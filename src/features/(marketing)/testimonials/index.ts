@@ -1,0 +1,10 @@
+export { default as Hero } from './sections/hero';
+export { default as Featured } from './sections/featured';
+export { default as Grid } from './sections/grid';
+export { default as VideoTestimonials } from './sections/video-testimonials';
+export { default as ByRole } from './sections/by-role';
+export { default as Stats } from './sections/stats';
+export { default as Logos } from './sections/logos';
+export { default as Awards } from './sections/awards';
+export { default as Submit } from './sections/submit';
+export { default as CTA } from './sections/cta';
