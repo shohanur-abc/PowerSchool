@@ -16,8 +16,8 @@ import { cn } from '@/lib/utils';
 // ============= MAIN COMPONENT =============
 export default function DesktopNav({ routes, isAuthenticated, userRole }: IDesktopNav) {
     return (
-        <section className="border-b bg-background sticky top-0 z-40">
-            <nav className='max-w-7xl mx-auto flex items-center justify-between gap-8 px-6 py-4 '>
+        <section className={cn("border-b bg-background top-0 z-40", process.env.NODE_ENV === 'development' || "sticky")}>
+            <nav className='max-w-7xl mx-auto flex items-center justify-between gap-8 px-6 py-2 '>
                 <div className="flex items-center gap-12">
                     <BrandLogo />
                     <NavMenu routes={routes} />
@@ -31,7 +31,7 @@ export default function DesktopNav({ routes, isAuthenticated, userRole }: IDeskt
 // ============= CHILD COMPONENTS =============
 const BrandLogo = () => (
     <Link href="/" className="flex items-center gap-2 font-bold text-xl text-primary hover:opacity-80 transition-opacity">
-        <div className="bg-primary text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg font-bold text-sm">
+        <div className="bg-primary text-primary-foreground flex aspect-square size-7 items-center justify-center rounded-lg font-bold text-sm">
             E
         </div>
         <span className="hidden sm:inline">EduPortal</span>
@@ -49,7 +49,7 @@ const NavMenu = ({ routes }: { routes: IDesktopNav['routes'] }) => (
                                 {route.label}
                             </NavigationMenuTrigger>
                             <NavigationMenuContent>
-                                <ul className="grid gap-3 p-4 md:w-96 lg:w-96">
+                                <ul className="grid gap-3 p-4 md:w-96 lg:w-120">
                                     {route.submenu.map((item) => (
                                         <li key={item.href}>
                                             <NavigationMenuLink asChild>
