@@ -1,0 +1,10 @@
+export { default as StatsCards } from './sections/stats-cards';
+export { default as AttendanceChart } from './sections/attendance-chart';
+export { default as RecentActivity } from './sections/recent-activity';
+export { default as UpcomingEvents } from './sections/upcoming-events';
+export { default as FeeOverview } from './sections/fee-overview';
+export { default as ClassPerformance } from './sections/class-performance';
+export { default as QuickActions } from './sections/quick-actions';
+export { default as NoticesPreview } from './sections/notices-preview';
+export { default as TopStudents } from './sections/top-students';
+export { default as AttendanceSummary } from './sections/attendance-summary';

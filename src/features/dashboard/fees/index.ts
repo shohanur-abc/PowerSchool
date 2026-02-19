@@ -1,0 +1,13 @@
+export { default as FeeStats } from './sections/overview/fee-stats';
+export { default as CollectionTrend } from './sections/overview/collection-trend';
+export { default as PaymentDistribution } from './sections/overview/payment-distribution';
+export { default as OverdueList } from './sections/overview/overdue-list';
+export { default as RecentPayments } from './sections/overview/recent-payments';
+export { default as CollectFeeForm } from './sections/collection/collect-fee-form';
+export { default as FeeReceipt } from './sections/collection/fee-receipt';
+export { default as PaymentTracker } from './sections/tracking/payment-tracker';
+export { default as ClassCollectionSummary } from './sections/tracking/class-collection-summary';
+export { default as StatementGenerator } from './sections/statements/statement-generator';
+export { default as StudentStatement } from './sections/statements/student-statement';
+export { default as FeeStructureTable } from './sections/structure/fee-structure-table';
+export { default as AddFeeType } from './sections/structure/add-fee-type';

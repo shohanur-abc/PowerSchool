@@ -6,7 +6,7 @@ import NotificationMenu from '@/features/navigation/notification-menu';
 import UserMenu from '@/features/navigation/user-menu';
 import { ROUTES } from '@/lib/routes';
 import React from 'react';
-import { LayoutDashboard, CheckCircle2, BarChart3, FileText, DollarSign, Settings, Bell, Users, Shield, Lock } from 'lucide-react';
+import { LayoutDashboard, CheckCircle2, BarChart3, FileText, DollarSign, Settings, Bell, Users, Shield, Lock, GraduationCap, BookOpen, UserCheck, Crown } from 'lucide-react';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -35,7 +35,7 @@ export const DASHBOARD_MENU = [
             {
                 label: "Overview",
                 href: ROUTES.dashboard.home,
-                icon: <LayoutDashboard/>,
+                icon: <LayoutDashboard />,
             },
         ],
     },
@@ -45,17 +45,17 @@ export const DASHBOARD_MENU = [
             {
                 label: "Attendance",
                 href: ROUTES.dashboard.attendance.root,
-                icon: <CheckCircle2/>,
+                icon: <CheckCircle2 />,
             },
             {
                 label: "Results",
                 href: ROUTES.dashboard.results.root,
-                icon: <BarChart3/>,
+                icon: <BarChart3 />,
             },
             {
                 label: "Reports",
                 href: ROUTES.dashboard.reports.root,
-                icon: <FileText/>,
+                icon: <FileText />,
             },
         ],
     },
@@ -65,7 +65,7 @@ export const DASHBOARD_MENU = [
             {
                 label: "Fees",
                 href: ROUTES.dashboard.fees.root,
-                icon: <DollarSign/>,
+                icon: <DollarSign />,
             },
         ],
     },
@@ -75,12 +75,12 @@ export const DASHBOARD_MENU = [
             {
                 label: "Operations",
                 href: ROUTES.dashboard.operations.root,
-                icon: <Settings/>,
+                icon: <Settings />,
             },
             {
                 label: "Notices",
                 href: ROUTES.dashboard.notices.root,
-                icon: <Bell/>,
+                icon: <Bell />,
             },
         ],
     },
@@ -90,17 +90,42 @@ export const DASHBOARD_MENU = [
             {
                 label: "Users",
                 href: ROUTES.dashboard.users.root,
-                icon: <Users/>,
+                icon: <Users />,
             },
             {
                 label: "Roles",
                 href: ROUTES.dashboard.roles.root,
-                icon: <Shield/>,
+                icon: <Shield />,
             },
             {
                 label: "Admin",
                 href: ROUTES.dashboard.admin,
-                icon: <Lock/>,
+                icon: <Lock />,
+            },
+        ],
+    },
+    {
+        label: "Portals",
+        items: [
+            {
+                label: "Teacher",
+                href: ROUTES.dashboard.teacher,
+                icon: <GraduationCap />,
+            },
+            {
+                label: "Student",
+                href: ROUTES.dashboard.student,
+                icon: <BookOpen />,
+            },
+            {
+                label: "Parent",
+                href: ROUTES.dashboard.parent,
+                icon: <UserCheck />,
+            },
+            {
+                label: "Principal",
+                href: ROUTES.dashboard.principal,
+                icon: <Crown />,
             },
         ],
     },

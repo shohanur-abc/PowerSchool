@@ -1,0 +1,12 @@
+export { default as ReportStats } from './sections/overview/report-stats';
+export { default as RecentReports } from './sections/overview/recent-reports';
+export { default as FavoriteReports } from './sections/overview/favorite-reports';
+export { default as ReportCatalog } from './sections/standard/report-catalog';
+export { default as ReportParameters } from './sections/standard/report-parameters';
+export { default as GeneratedReport } from './sections/standard/generated-report';
+export { default as ReportBuilder } from './sections/custom/report-builder';
+export { default as SavedReports } from './sections/custom/saved-reports';
+export { default as AnalyticsOverview } from './sections/analytics/analytics-overview';
+export { default as ComparativeCharts } from './sections/analytics/comparative-charts';
+export { default as DataInsights } from './sections/analytics/data-insights';
+export { default as ExportCenter } from './sections/analytics/export-center';
