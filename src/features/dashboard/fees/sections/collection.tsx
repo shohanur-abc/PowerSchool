@@ -94,7 +94,7 @@ const FeeItemsCard = ({ items }: { items: IFeeCollection['feeItems'] }) => (
                         .filter(i => i.selected)
                         .map(i => parseInt(i.amount.replace(/[^\d]/g, ''), 10))
                         .reduce((acc, val) => acc + val, 0)
-                        .toLocaleString('en-IN', { style: 'currency', currency: 'BDT', maximumFractionDigits: 0 })}
+                        .toLocaleString('bn-BD', { style: 'currency', currency: 'BDT', maximumFractionDigits: 0 })}
                 </span>
             </div>
         </CardContent>
