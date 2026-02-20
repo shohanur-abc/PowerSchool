@@ -1,10 +1,22 @@
+import type { Metadata } from 'next';
+import { PublishNotice } from '@/features/dashboard/notices';
+
+export const metadata: Metadata = {
+    title: 'Publish Notice — EduManager',
+    description: 'Create and publish school notices',
+};
+
 export default function Page() {
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Coming Soon</h1>
-        <p className="text-muted-foreground">This page is coming soon</p>
-      </div>
-    </div>
-  );
+    return (
+        <PublishNotice
+            noticeTypes={['General', 'Academic', 'Event', 'Finance', 'Holiday', 'Sports', 'Cultural', 'Internal']}
+            audienceOptions={[
+                { label: 'All', selected: true },
+                { label: 'Students', selected: false },
+                { label: 'Parents', selected: false },
+                { label: 'Teachers', selected: false },
+                { label: 'Staff', selected: false },
+            ]}
+        />
+    );
 }
