@@ -1,10 +1,18 @@
+import type { Metadata } from 'next';
+import { VerifyEmailCard } from '@/features/auth/verify-email';
+import ROUTES from '@/lib/routes';
+
+export const metadata: Metadata = {
+    title: 'Verify Your Email — EduManager',
+    description: 'Please verify your email address to activate your EduManager account.',
+};
+
 export default function Page() {
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Coming Soon</h1>
-        <p className="text-muted-foreground">This page is coming soon</p>
-      </div>
-    </div>
-  );
+    return (
+        <VerifyEmailCard
+            title="Verify Your Email"
+            description="Please verify your email address to continue using EduManager"
+            loginHref={ROUTES.auth.login}
+        />
+    );
 }

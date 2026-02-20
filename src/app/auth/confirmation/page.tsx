@@ -1,10 +1,19 @@
+import type { Metadata } from 'next';
+import { ConfirmationCard } from '@/features/auth/confirmation';
+import ROUTES from '@/lib/routes';
+
+export const metadata: Metadata = {
+    title: 'Check Your Email — EduManager',
+    description: 'We sent a confirmation email. Please check your inbox to verify your account.',
+};
+
 export default function Page() {
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Coming Soon</h1>
-        <p className="text-muted-foreground">This page is coming soon</p>
-      </div>
-    </div>
-  );
+    return (
+        <ConfirmationCard
+            title="Check Your Email"
+            description="We've sent a confirmation link to your email address"
+            email="admin@school.edu"
+            loginHref={ROUTES.auth.login}
+        />
+    );
 }

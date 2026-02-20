@@ -1,10 +1,18 @@
+import type { Metadata } from 'next';
+import { SignupForm } from '@/features/auth/signup';
+import ROUTES from '@/lib/routes';
+
+export const metadata: Metadata = {
+    title: 'Create Account — EduManager',
+    description: 'Create your EduManager account and set up your school management platform.',
+};
+
 export default function Page() {
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Coming Soon</h1>
-        <p className="text-muted-foreground">This page is coming soon</p>
-      </div>
-    </div>
-  );
+    return (
+        <SignupForm
+            title="Create Your Account"
+            description="Set up your school management platform in minutes"
+            loginHref={ROUTES.auth.login}
+        />
+    );
 }
