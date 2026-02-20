@@ -7,12 +7,17 @@ export const metadata: Metadata = {
     description: 'We sent a confirmation email. Please check your inbox to verify your account.',
 };
 
-export default function Page() {
+interface PageProps {
+    searchParams: Promise<{ email?: string }>;
+}
+
+export default async function Page({ searchParams }: PageProps) {
+    const { email } = await searchParams;
     return (
         <ConfirmationCard
             title="Check Your Email"
             description="We've sent a confirmation link to your email address"
-            email="admin@school.edu"
+            email={email ?? 'your email address'}
             loginHref={ROUTES.auth.login}
         />
     );

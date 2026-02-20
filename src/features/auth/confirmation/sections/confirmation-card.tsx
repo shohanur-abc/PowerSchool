@@ -41,7 +41,7 @@ const InfoCard = ({ title, description, email, loginHref }: IConfirmationCard) =
             </Button>
             <p className="text-center text-xs text-muted-foreground">
                 Didn&apos;t receive the email? Check your spam folder or{' '}
-                <button className="text-primary hover:underline">resend</button>.
+                <Button variant="link" type="button" className="h-auto p-0 text-xs">resend</Button>.
             </p>
         </CardContent>
     </Card>
