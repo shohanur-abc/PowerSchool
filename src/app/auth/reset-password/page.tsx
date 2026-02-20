@@ -1,10 +1,18 @@
+import type { Metadata } from 'next';
+import { ResetPasswordForm } from '@/features/auth/reset-password';
+import ROUTES from '@/lib/routes';
+
+export const metadata: Metadata = {
+    title: 'Reset Password — EduManager',
+    description: 'Create a new password for your EduManager account.',
+};
+
 export default function Page() {
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Coming Soon</h1>
-        <p className="text-muted-foreground">This page is coming soon</p>
-      </div>
-    </div>
-  );
+    return (
+        <ResetPasswordForm
+            title="Create New Password"
+            description="Your new password must be different from your previous password"
+            loginHref={ROUTES.auth.login}
+        />
+    );
 }

@@ -1,10 +1,18 @@
+import type { Metadata } from 'next';
+import { ForgotPasswordForm } from '@/features/auth/forgot-password';
+import ROUTES from '@/lib/routes';
+
+export const metadata: Metadata = {
+    title: 'Forgot Password — EduManager',
+    description: 'Enter your email address to receive a password reset link.',
+};
+
 export default function Page() {
-  return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Coming Soon</h1>
-        <p className="text-muted-foreground">This page is coming soon</p>
-      </div>
-    </div>
-  );
+    return (
+        <ForgotPasswordForm
+            title="Forgot Your Password?"
+            description="Enter your email and we'll send you a link to reset your password"
+            loginHref={ROUTES.auth.login}
+        />
+    );
 }
