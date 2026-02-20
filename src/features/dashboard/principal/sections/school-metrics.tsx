@@ -1,4 +1,5 @@
 import { type LucideIcon, TrendingUp, TrendingDown } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import { Badge } from '@/components/ui/badge';
 import {
     Card,
@@ -25,26 +26,30 @@ const MetricCard = ({
     suffix,
     change,
     changeType,
-    icon: Icon,
-}: IMetricItem) => (
-    <Card className="hover:shadow-md transition-shadow">
-        <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{title}</CardTitle>
-            <MetricIcon icon={Icon} />
-        </CardHeader>
-        <CardContent className="space-y-1.5">
-            <p className="text-3xl font-bold tracking-tight tabular-nums">
-                {value}
-                {suffix && (
-                    <span className="text-base font-normal text-muted-foreground ml-0.5">
-                        {suffix}
-                    </span>
-                )}
-            </p>
-            <ChangeIndicator change={change} changeType={changeType} />
-        </CardContent>
-    </Card>
-);
+    icon: iconName,
+}: IMetricItem) => {
+    const Icon = getIcon(iconName);
+
+    return (
+        <Card className="hover:shadow-md transition-shadow">
+            <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">{title}</CardTitle>
+                <MetricIcon icon={Icon} />
+            </CardHeader>
+            <CardContent className="space-y-1.5">
+                <p className="text-3xl font-bold tracking-tight tabular-nums">
+                    {value}
+                    {suffix && (
+                        <span className="text-base font-normal text-muted-foreground ml-0.5">
+                            {suffix}
+                        </span>
+                    )}
+                </p>
+                <ChangeIndicator change={change} changeType={changeType} />
+            </CardContent>
+        </Card>
+    );
+};
 
 const MetricIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
     <div className="size-9 rounded-lg bg-muted flex items-center justify-center shrink-0">
@@ -80,7 +85,7 @@ interface IMetricItem {
     suffix?: string;
     change: string;
     changeType: 'up' | 'down';
-    icon: LucideIcon;
+    icon: string;
 }
 
 interface ISchoolMetrics {

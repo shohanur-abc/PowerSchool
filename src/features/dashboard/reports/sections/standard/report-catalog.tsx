@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { type LucideIcon, FileText, Search } from 'lucide-react';
+import { FileText, Search } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import {
     Card,
     CardContent,
@@ -139,11 +140,14 @@ const ReportCard = ({
     </div>
 );
 
-const CatalogIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
-    <div className="size-10 rounded-lg bg-muted flex items-center justify-center">
-        <Icon className="size-5 text-muted-foreground" />
-    </div>
-);
+const CatalogIcon = ({ icon: iconName }: { icon: string }) => {
+    const Icon = getIcon(iconName);
+    return (
+        <div className="size-10 rounded-lg bg-muted flex items-center justify-center">
+            <Icon className="size-5 text-muted-foreground" />
+        </div>
+    );
+};
 
 const EmptyState = () => (
     <div className="flex flex-col items-center justify-center py-8 text-center">
@@ -157,7 +161,7 @@ interface ICatalogReport {
     id: string;
     name: string;
     description: string;
-    icon: LucideIcon;
+    icon: string;
 }
 
 interface IReportCategory {

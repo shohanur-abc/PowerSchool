@@ -1,4 +1,5 @@
 import { type LucideIcon, Users, Shield, ShieldCheck } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import {
     Card,
     CardContent,
@@ -26,37 +27,40 @@ const RoleCard = ({
     userCount,
     permissionsCount,
     color,
-    icon: Icon,
-}: IRoleItem) => (
-    <Card className="hover:shadow-md transition-shadow overflow-hidden">
-        <ColorIndicator color={color} />
-        <CardHeader className="flex-row items-start justify-between space-y-0 pb-2">
-            <div className="space-y-1">
-                <CardTitle className="text-base flex items-center gap-2">
-                    <RoleIcon icon={Icon} />
-                    {name}
-                </CardTitle>
-                {description && (
-                    <CardDescription className="text-xs line-clamp-2">
-                        {description}
-                    </CardDescription>
-                )}
-            </div>
-        </CardHeader>
-        <CardContent>
-            <div className="flex items-center gap-3">
-                <Badge variant="secondary" className="gap-1 text-xs">
-                    <Users className="size-3" />
-                    {userCount} users
-                </Badge>
-                <Badge variant="outline" className="gap-1 text-xs">
-                    <ShieldCheck className="size-3" />
-                    {permissionsCount} permissions
-                </Badge>
-            </div>
-        </CardContent>
-    </Card>
-);
+    icon: iconName,
+}: IRoleItem) => {
+    const Icon = iconName ? getIcon(iconName) : undefined;
+    return (
+        <Card className="hover:shadow-md transition-shadow overflow-hidden">
+            <ColorIndicator color={color} />
+            <CardHeader className="flex-row items-start justify-between space-y-0 pb-2">
+                <div className="space-y-1">
+                    <CardTitle className="text-base flex items-center gap-2">
+                        <RoleIcon icon={Icon} />
+                        {name}
+                    </CardTitle>
+                    {description && (
+                        <CardDescription className="text-xs line-clamp-2">
+                            {description}
+                        </CardDescription>
+                    )}
+                </div>
+            </CardHeader>
+            <CardContent>
+                <div className="flex items-center gap-3">
+                    <Badge variant="secondary" className="gap-1 text-xs">
+                        <Users className="size-3" />
+                        {userCount} users
+                    </Badge>
+                    <Badge variant="outline" className="gap-1 text-xs">
+                        <ShieldCheck className="size-3" />
+                        {permissionsCount} permissions
+                    </Badge>
+                </div>
+            </CardContent>
+        </Card>
+    );
+};
 
 const ColorIndicator = ({ color }: { color: string }) => (
     <div className="h-1 w-full" style={{ backgroundColor: color }} />
@@ -79,7 +83,7 @@ interface IRoleItem {
     userCount: number;
     permissionsCount: number;
     color: string;
-    icon?: LucideIcon;
+    icon?: string;
 }
 
 interface IRoleList {

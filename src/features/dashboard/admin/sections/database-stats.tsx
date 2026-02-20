@@ -1,4 +1,5 @@
 import { type LucideIcon } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import {
     Card,
     CardContent,
@@ -22,31 +23,35 @@ const DbStatCard = ({
     title,
     value,
     unit,
-    icon: Icon,
+    icon: iconName,
     description,
-}: IDbStat) => (
-    <Card className="hover:shadow-md transition-shadow">
-        <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{title}</CardTitle>
-            <StatIcon icon={Icon} />
-        </CardHeader>
-        <CardContent className="space-y-1">
-            <div className="flex items-baseline gap-1">
-                <p className="text-3xl font-bold tracking-tight tabular-nums">
-                    {value}
-                </p>
-                {unit && (
-                    <span className="text-sm text-muted-foreground">
-                        {unit}
-                    </span>
+}: IDbStat) => {
+    const Icon = getIcon(iconName);
+
+    return (
+        <Card className="hover:shadow-md transition-shadow">
+            <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">{title}</CardTitle>
+                <StatIcon icon={Icon} />
+            </CardHeader>
+            <CardContent className="space-y-1">
+                <div className="flex items-baseline gap-1">
+                    <p className="text-3xl font-bold tracking-tight tabular-nums">
+                        {value}
+                    </p>
+                    {unit && (
+                        <span className="text-sm text-muted-foreground">
+                            {unit}
+                        </span>
+                    )}
+                </div>
+                {description && (
+                    <p className="text-xs text-muted-foreground">{description}</p>
                 )}
-            </div>
-            {description && (
-                <p className="text-xs text-muted-foreground">{description}</p>
-            )}
-        </CardContent>
-    </Card>
-);
+            </CardContent>
+        </Card>
+    );
+};
 
 const StatIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
     <div className="size-9 rounded-lg bg-muted flex items-center justify-center shrink-0">
@@ -59,7 +64,7 @@ interface IDbStat {
     title: string;
     value: string;
     unit?: string;
-    icon: LucideIcon;
+    icon: string;
     description?: string;
 }
 

@@ -1,4 +1,5 @@
 import { type LucideIcon } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import { Badge } from '@/components/ui/badge';
 import {
     Card,
@@ -28,39 +29,43 @@ const HealthCard = ({
     unit,
     percentage,
     status,
-    icon: Icon,
+    icon: iconName,
     description,
-}: IHealthMetric) => (
-    <Card className="hover:shadow-md transition-shadow">
-        <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{title}</CardTitle>
-            <MetricIcon icon={Icon} />
-        </CardHeader>
-        <CardContent className="space-y-2">
-            <div className="flex items-baseline gap-1">
-                <p className="text-2xl font-bold tracking-tight tabular-nums">
-                    {value}
-                </p>
-                {unit && (
-                    <span className="text-xs text-muted-foreground">
-                        {unit}
-                    </span>
+}: IHealthMetric) => {
+    const Icon = getIcon(iconName);
+
+    return (
+        <Card className="hover:shadow-md transition-shadow">
+            <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">{title}</CardTitle>
+                <MetricIcon icon={Icon} />
+            </CardHeader>
+            <CardContent className="space-y-2">
+                <div className="flex items-baseline gap-1">
+                    <p className="text-2xl font-bold tracking-tight tabular-nums">
+                        {value}
+                    </p>
+                    {unit && (
+                        <span className="text-xs text-muted-foreground">
+                            {unit}
+                        </span>
+                    )}
+                </div>
+                {percentage !== undefined && (
+                    <Progress value={percentage} className="h-1.5" />
                 )}
-            </div>
-            {percentage !== undefined && (
-                <Progress value={percentage} className="h-1.5" />
-            )}
-            <div className="flex items-center justify-between">
-                <CardDescription className="text-xs">
-                    {description}
-                </CardDescription>
-                <Badge className={healthStatusVariants({ status })}>
-                    {status}
-                </Badge>
-            </div>
-        </CardContent>
-    </Card>
-);
+                <div className="flex items-center justify-between">
+                    <CardDescription className="text-xs">
+                        {description}
+                    </CardDescription>
+                    <Badge className={healthStatusVariants({ status })}>
+                        {status}
+                    </Badge>
+                </div>
+            </CardContent>
+        </Card>
+    );
+};
 
 const MetricIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
     <div className="size-9 rounded-lg bg-muted flex items-center justify-center shrink-0">
@@ -89,7 +94,7 @@ interface IHealthMetric {
     unit?: string;
     percentage?: number;
     status: 'healthy' | 'warning' | 'critical';
-    icon: LucideIcon;
+    icon: string;
     description: string;
 }
 

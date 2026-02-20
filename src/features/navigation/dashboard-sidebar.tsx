@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarRail, SidebarProvider, SidebarInset, SidebarSeparator, } from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarRail, SidebarProvider, SidebarInset, SidebarSeparator, SidebarMenuSub, SidebarMenuSubItem, SidebarMenuSubButton, } from '@/components/ui/sidebar';
 import React, { ReactNode } from 'react';
+import { ChevronRight } from 'lucide-react';
 
 // ============= MAIN COMPONENT =============
 export default function DashboardSidebar({ sidebarItems, userRole, children }: IDashboardSidebar & { children: React.ReactNode }) {
@@ -57,35 +58,69 @@ const SidebarContentContent = ({ items }: { items: IDashboardSidebar['sidebarIte
 
 const SidebarMenuItems = ({ items }: { items: IDashboardSidebar['sidebarItems'][0]['items'] }) => (
     <SidebarMenu>
-        {items.map((item) => (
-            <SidebarMenuItem key={item.href}>
-                <SidebarMenuButton
-                    asChild
-                    tooltip={item.label}
-                    isActive={item.active}
-                >
-                    <Link href={item.href} className='[&_svg]:size-4'>
-                        {item.icon}
-                        <span>{item.label}</span>
-                    </Link>
-                </SidebarMenuButton>
-            </SidebarMenuItem>
-        ))}
+        {items.map((item) => {
+            const hasSubmenu = 'items' in item && Array.isArray(item.items) && item.items.length > 0;
+            return (
+                <SidebarMenuItem key={item.label}>
+                    {hasSubmenu ? (
+                        <>
+                            <SidebarMenuButton tooltip={item.label} className='[&_svg]:size-4'>
+                                {item.icon}
+                                <span>{item.label}</span>
+                                <ChevronRight className='ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90' />
+                            </SidebarMenuButton>
+                            <SidebarMenuSub>
+                                {(item as IMenuItemWithSubmenu).items.map((subitem) => (
+                                    <SidebarMenuSubItem key={subitem.href}>
+                                        <SidebarMenuSubButton asChild>
+                                            <Link href={subitem.href}>{subitem.label}</Link>
+                                        </SidebarMenuSubButton>
+                                    </SidebarMenuSubItem>
+                                ))}
+                            </SidebarMenuSub>
+                        </>
+                    ) : (
+                        <SidebarMenuButton
+                            asChild
+                            tooltip={item.label}
+                            isActive={(item as IMenuItemWithHref).active}
+                        >
+                            <Link href={(item as IMenuItemWithHref).href} className='[&_svg]:size-4'>
+                                {item.icon}
+                                <span>{item.label}</span>
+                            </Link>
+                        </SidebarMenuButton>
+                    )}
+                </SidebarMenuItem>
+            );
+        })}
     </SidebarMenu>
 );
 
 // ============= TYPES =============
+interface IMenuItemWithHref {
+    label: string;
+    href: string;
+    icon?: ReactNode;
+    active?: boolean;
+}
+
+interface IMenuItemWithSubmenu {
+    label: string;
+    icon?: ReactNode;
+    items: {
+        label: string;
+        href: string;
+    }[];
+}
+
+type IMenuItem = IMenuItemWithHref | IMenuItemWithSubmenu;
+
 interface IDashboardSidebar {
     sidebarItems: {
         label?: string;
-        items: {
-            label: string;
-            href: string;
-            icon?: ReactNode;
-            active?: boolean;
-        }[];
+        items: IMenuItem[];
     }[];
     userRole: string;
-
 }
 

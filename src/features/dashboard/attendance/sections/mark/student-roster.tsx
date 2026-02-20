@@ -5,36 +5,13 @@ import { CheckCircle2, XCircle, Clock, UserCheck } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card';
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from '@/components/ui/table';
-import {
-    ToggleGroup,
-    ToggleGroupItem,
-} from '@/components/ui/toggle-group';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from '@/components/ui/card';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from '@/components/ui/table';
+import { ToggleGroup, ToggleGroupItem, } from '@/components/ui/toggle-group';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 // ============= MAIN COMPONENT =============
-export default function StudentRoster({
-    title,
-    description,
-    students,
-    onSubmit,
-    isSubmitting,
-}: IStudentRoster) {
+export default function StudentRoster({ title, description, students, onSubmit, isSubmitting, }: IStudentRoster) {
     const [attendance, setAttendance] = useState<Record<string, TStatus>>(
         () => buildInitialState(students)
     );
@@ -135,7 +112,7 @@ const RosterTable = ({
     attendance: Record<string, TStatus>;
     onStatusChange: (studentId: string, status: TStatus) => void;
 }) => (
-    <ScrollArea className="h-[28rem]">
+    <ScrollArea className="h-112">
         <Table>
             <TableHeader>
                 <TableRow>

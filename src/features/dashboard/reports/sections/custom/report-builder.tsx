@@ -2,14 +2,11 @@
 
 import { useState } from 'react';
 import {
-    type LucideIcon,
-    Database,
-    Columns3,
     Filter,
-    ArrowUpDown,
     ChevronRight,
     Check,
 } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import {
     Card,
     CardContent,
@@ -115,7 +112,7 @@ export default function ReportBuilder({
                     <AccordionItem value="step-1">
                         <AccordionTrigger>
                             <StepHeader
-                                icon={Database}
+                                icon="Database"
                                 step={1}
                                 label="Select Data Source"
                                 completed={!!activeSource}
@@ -140,7 +137,7 @@ export default function ReportBuilder({
                     <AccordionItem value="step-2">
                         <AccordionTrigger>
                             <StepHeader
-                                icon={Columns3}
+                                icon="Columns3"
                                 step={2}
                                 label="Select Columns"
                                 completed={selectedColumns.length > 0}
@@ -160,7 +157,7 @@ export default function ReportBuilder({
                     <AccordionItem value="step-3">
                         <AccordionTrigger>
                             <StepHeader
-                                icon={Filter}
+                                icon="Filter"
                                 step={3}
                                 label="Add Filters"
                                 completed={filters.length > 0}
@@ -182,7 +179,7 @@ export default function ReportBuilder({
                     <AccordionItem value="step-4">
                         <AccordionTrigger>
                             <StepHeader
-                                icon={ArrowUpDown}
+                                icon="ArrowUpDown"
                                 step={4}
                                 label="Sort & Group"
                                 completed={!!sortField || !!groupBy}
@@ -218,36 +215,39 @@ export default function ReportBuilder({
 
 // ============= CHILD COMPONENTS =============
 const StepHeader = ({
-    icon: Icon,
+    icon: iconName,
     step,
     label,
     completed,
     count,
 }: {
-    icon: LucideIcon;
+    icon: string;
     step: number;
     label: string;
     completed: boolean;
     count?: number;
-}) => (
-    <div className="flex items-center gap-3">
-        <div
-            className={`size-7 rounded-full flex items-center justify-center text-xs font-semibold ${completed
+}) => {
+    const Icon = getIcon(iconName);
+    return (
+        <div className="flex items-center gap-3">
+            <div
+                className={`size-7 rounded-full flex items-center justify-center text-xs font-semibold ${completed
                     ? 'bg-primary text-primary-foreground'
                     : 'bg-muted text-muted-foreground'
-                }`}
-        >
-            {completed ? <Check className="size-3.5" /> : step}
+                    }`}
+            >
+                {completed ? <Check className="size-3.5" /> : step}
+            </div>
+            <Icon className="size-4 text-muted-foreground" />
+            <span className="text-sm font-medium">{label}</span>
+            {count !== undefined && count > 0 && (
+                <Badge variant="secondary" className="text-xs">
+                    {count}
+                </Badge>
+            )}
         </div>
-        <Icon className="size-4 text-muted-foreground" />
-        <span className="text-sm font-medium">{label}</span>
-        {count !== undefined && count > 0 && (
-            <Badge variant="secondary" className="text-xs">
-                {count}
-            </Badge>
-        )}
-    </div>
-);
+    );
+};
 
 const DataSourceSelector = ({
     dataSources,

@@ -1,4 +1,5 @@
 import { type LucideIcon, TrendingUp, TrendingDown } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import {
     Card,
     CardContent,
@@ -25,27 +26,30 @@ const EngagementCard = ({
     value,
     change,
     changeType,
-    icon: Icon,
+    icon: iconName,
     description,
-}: IEngagementItem) => (
-    <Card className="hover:shadow-md transition-shadow">
-        <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{title}</CardTitle>
-            <EngagementIcon icon={Icon} />
-        </CardHeader>
-        <CardContent className="space-y-1.5">
-            <p className="text-3xl font-bold tracking-tight tabular-nums">
-                {value}
-            </p>
-            <div className="flex items-center gap-2">
-                <TrendIndicator change={change} changeType={changeType} />
-                <CardDescription className="text-xs">
-                    {description}
-                </CardDescription>
-            </div>
-        </CardContent>
-    </Card>
-);
+}: IEngagementItem) => {
+    const Icon = getIcon(iconName);
+    return (
+        <Card className="hover:shadow-md transition-shadow">
+            <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">{title}</CardTitle>
+                <EngagementIcon icon={Icon} />
+            </CardHeader>
+            <CardContent className="space-y-1.5">
+                <p className="text-3xl font-bold tracking-tight tabular-nums">
+                    {value}
+                </p>
+                <div className="flex items-center gap-2">
+                    <TrendIndicator change={change} changeType={changeType} />
+                    <CardDescription className="text-xs">
+                        {description}
+                    </CardDescription>
+                </div>
+            </CardContent>
+        </Card>
+    );
+};
 
 const EngagementIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
     <div className="size-9 rounded-lg bg-muted flex items-center justify-center shrink-0">
@@ -80,7 +84,7 @@ interface IEngagementItem {
     value: string;
     change: string;
     changeType: 'up' | 'down';
-    icon: LucideIcon;
+    icon: string;
     description: string;
 }
 

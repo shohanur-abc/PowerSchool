@@ -6,6 +6,7 @@ import {
     Minus,
     ArrowRight,
 } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import {
     Card,
     CardContent,
@@ -49,7 +50,7 @@ export default function DataInsights({
 
 // ============= CHILD COMPONENTS =============
 const InsightCard = ({
-    icon: Icon,
+    icon: iconName,
     title,
     description,
     metric,
@@ -57,40 +58,43 @@ const InsightCard = ({
     trend,
     trendType,
     recommendation,
-}: IInsight) => (
-    <div className="flex flex-col gap-3 rounded-lg border p-4 hover:shadow-sm transition-shadow">
-        <div className="flex items-start gap-3">
-            <InsightIcon icon={Icon} />
-            <div className="flex-1 min-w-0 space-y-1">
-                <p className="text-sm font-semibold leading-snug">{title}</p>
-                <p className="text-xs text-muted-foreground line-clamp-2">
-                    {description}
-                </p>
-            </div>
-        </div>
-
-        <div className="flex items-center justify-between gap-3">
-            <div className="space-y-0.5">
-                <p className="text-2xl font-bold tabular-nums">{metric}</p>
-                {metricLabel && (
-                    <p className="text-xs text-muted-foreground">
-                        {metricLabel}
+}: IInsight) => {
+    const Icon = getIcon(iconName);
+    return (
+        <div className="flex flex-col gap-3 rounded-lg border p-4 hover:shadow-sm transition-shadow">
+            <div className="flex items-start gap-3">
+                <InsightIcon icon={Icon} />
+                <div className="flex-1 min-w-0 space-y-1">
+                    <p className="text-sm font-semibold leading-snug">{title}</p>
+                    <p className="text-xs text-muted-foreground line-clamp-2">
+                        {description}
                     </p>
-                )}
+                </div>
             </div>
-            <TrendIndicator trend={trend} trendType={trendType} />
-        </div>
 
-        {recommendation && (
-            <div className="flex items-start gap-2 rounded-md bg-muted/50 p-3 mt-auto">
-                <ArrowRight className="size-3.5 text-primary mt-0.5 shrink-0" />
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                    {recommendation}
-                </p>
+            <div className="flex items-center justify-between gap-3">
+                <div className="space-y-0.5">
+                    <p className="text-2xl font-bold tabular-nums">{metric}</p>
+                    {metricLabel && (
+                        <p className="text-xs text-muted-foreground">
+                            {metricLabel}
+                        </p>
+                    )}
+                </div>
+                <TrendIndicator trend={trend} trendType={trendType} />
             </div>
-        )}
-    </div>
-);
+
+            {recommendation && (
+                <div className="flex items-start gap-2 rounded-md bg-muted/50 p-3 mt-auto">
+                    <ArrowRight className="size-3.5 text-primary mt-0.5 shrink-0" />
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                        {recommendation}
+                    </p>
+                </div>
+            )}
+        </div>
+    );
+};
 
 const InsightIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
     <div className="size-9 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0">
@@ -141,7 +145,7 @@ const EmptyState = () => (
 
 // ============= TYPES =============
 interface IInsight {
-    icon: LucideIcon;
+    icon: string;
     title: string;
     description: string;
     metric: string;

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { type LucideIcon } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import {
     Card,
     CardContent,
@@ -21,26 +22,29 @@ export default function QuickActions({ actions }: IQuickActions) {
 // ============= CHILD COMPONENTS =============
 const ActionCard = ({
     label,
-    icon: Icon,
+    icon: iconName,
     href,
     description,
-}: IActionItem) => (
-    <Link href={href} className="group">
-        <Card className="h-full hover:border-primary/50 hover:shadow-md transition-all cursor-pointer">
-            <CardContent className="flex items-start gap-3 pt-0">
-                <ActionIcon icon={Icon} />
-                <div className="space-y-0.5 min-w-0">
-                    <CardTitle className="text-sm group-hover:text-primary transition-colors">
-                        {label}
-                    </CardTitle>
-                    <CardDescription className="text-xs line-clamp-2">
-                        {description}
-                    </CardDescription>
-                </div>
-            </CardContent>
-        </Card>
-    </Link>
-);
+}: IActionItem) => {
+    const Icon = getIcon(iconName);
+    return (
+        <Link href={href} className="group">
+            <Card className="h-full hover:border-primary/50 hover:shadow-md transition-all cursor-pointer">
+                <CardContent className="flex items-start gap-3 pt-0">
+                    <ActionIcon icon={Icon} />
+                    <div className="space-y-0.5 min-w-0">
+                        <CardTitle className="text-sm group-hover:text-primary transition-colors">
+                            {label}
+                        </CardTitle>
+                        <CardDescription className="text-xs line-clamp-2">
+                            {description}
+                        </CardDescription>
+                    </div>
+                </CardContent>
+            </Card>
+        </Link>
+    );
+};
 
 const ActionIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
     <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
@@ -51,7 +55,7 @@ const ActionIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
 // ============= TYPES =============
 interface IActionItem {
     label: string;
-    icon: LucideIcon;
+    icon: string;
     href: string;
     description: string;
     variant?: string;

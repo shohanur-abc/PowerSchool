@@ -1,5 +1,4 @@
-import { UserCheck, UserX, Clock } from 'lucide-react';
-import { type LucideIcon } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
     Card,
@@ -31,22 +30,22 @@ export default function StaffAttendance({
                 {/* Summary stats */}
                 <div className="@container grid grid-cols-2 @sm:grid-cols-4 gap-3">
                     <AttendanceStat
-                        icon={UserCheck}
+                        icon="UserCheck"
                         label="Total Staff"
                         value={totalStaff}
                     />
                     <AttendanceStat
-                        icon={UserCheck}
+                        icon="UserCheck"
                         label="Present"
                         value={present}
                     />
                     <AttendanceStat
-                        icon={UserX}
+                        icon="UserX"
                         label="Absent"
                         value={absent}
                     />
                     <AttendanceStat
-                        icon={Clock}
+                        icon="Clock"
                         label="On Leave"
                         value={onLeave}
                     />
@@ -85,22 +84,26 @@ export default function StaffAttendance({
 
 // ============= CHILD COMPONENTS =============
 const AttendanceStat = ({
-    icon: Icon,
+    icon: iconName,
     label,
     value,
 }: {
-    icon: LucideIcon;
+    icon: string;
     label: string;
     value: number;
-}) => (
-    <div className="flex items-center gap-2 rounded-lg border p-2.5">
-        <Icon className="size-4 text-muted-foreground shrink-0" />
-        <div>
-            <p className="text-xs text-muted-foreground">{label}</p>
-            <p className="text-sm font-semibold tabular-nums">{value}</p>
+}) => {
+    const Icon = getIcon(iconName);
+
+    return (
+        <div className="flex items-center gap-2 rounded-lg border p-2.5">
+            <Icon className="size-4 text-muted-foreground shrink-0" />
+            <div>
+                <p className="text-xs text-muted-foreground">{label}</p>
+                <p className="text-sm font-semibold tabular-nums">{value}</p>
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 const AbsentStaffRow = ({ name, avatar, reason }: IAbsentStaff) => (
     <div className="flex items-center gap-2.5 rounded-lg border p-2 hover:bg-muted/50 transition-colors">

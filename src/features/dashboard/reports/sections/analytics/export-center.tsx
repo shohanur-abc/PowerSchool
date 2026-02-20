@@ -1,6 +1,7 @@
 'use client';
 
 import { type LucideIcon } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import {
     Card,
     CardContent,
@@ -38,38 +39,41 @@ export default function ExportCenter({
 
 // ============= CHILD COMPONENTS =============
 const ExportOption = ({
-    icon: Icon,
+    icon: iconName,
     title,
     description,
     format,
     onExport,
-}: IExportOption) => (
-    <div className="flex flex-col gap-3 rounded-lg border p-4 hover:shadow-sm transition-shadow text-center">
-        <ExportIcon icon={Icon} />
-        <div className="space-y-1 flex-1">
-            <div className="flex items-center justify-center gap-2">
-                <p className="text-sm font-semibold">{title}</p>
-                {format && (
-                    <Badge variant="outline" className="text-xs">
-                        {format}
-                    </Badge>
-                )}
+}: IExportOption) => {
+    const Icon = getIcon(iconName);
+    return (
+        <div className="flex flex-col gap-3 rounded-lg border p-4 hover:shadow-sm transition-shadow text-center">
+            <ExportIcon icon={Icon} />
+            <div className="space-y-1 flex-1">
+                <div className="flex items-center justify-center gap-2">
+                    <p className="text-sm font-semibold">{title}</p>
+                    {format && (
+                        <Badge variant="outline" className="text-xs">
+                            {format}
+                        </Badge>
+                    )}
+                </div>
+                <p className="text-xs text-muted-foreground line-clamp-2">
+                    {description}
+                </p>
             </div>
-            <p className="text-xs text-muted-foreground line-clamp-2">
-                {description}
-            </p>
+            <Button
+                variant="outline"
+                size="sm"
+                className="w-full mt-auto"
+                onClick={onExport}
+            >
+                <Icon className="size-3.5 mr-1.5" />
+                Export
+            </Button>
         </div>
-        <Button
-            variant="outline"
-            size="sm"
-            className="w-full mt-auto"
-            onClick={onExport}
-        >
-            <Icon className="size-3.5 mr-1.5" />
-            Export
-        </Button>
-    </div>
-);
+    );
+};
 
 const ExportIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
     <div className="size-12 rounded-lg bg-muted flex items-center justify-center mx-auto">
@@ -79,7 +83,7 @@ const ExportIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
 
 // ============= TYPES =============
 interface IExportOption {
-    icon: LucideIcon;
+    icon: string;
     title: string;
     description: string;
     format?: string;

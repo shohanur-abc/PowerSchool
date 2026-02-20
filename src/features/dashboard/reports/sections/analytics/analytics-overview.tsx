@@ -4,6 +4,7 @@ import {
     TrendingDown,
     Minus,
 } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import {
     Card,
     CardContent,
@@ -30,37 +31,40 @@ const MetricCard = ({
     suffix,
     change,
     changeType,
-    icon: Icon,
+    icon: iconName,
     sparkline,
-}: IAnalyticsMetric) => (
-    <Card className="hover:shadow-md transition-shadow">
-        <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{title}</CardTitle>
-            <MetricIcon icon={Icon} />
-        </CardHeader>
-        <CardContent className="space-y-3">
-            <div className="flex items-baseline gap-1">
-                <p className="text-3xl font-bold tracking-tight tabular-nums">
-                    {value}
-                </p>
-                {suffix && (
-                    <span className="text-lg font-medium text-muted-foreground">
-                        {suffix}
-                    </span>
-                )}
-            </div>
-            <div className="flex items-center justify-between gap-2">
-                <ChangeIndicator change={change} changeType={changeType} />
-                {sparkline && sparkline.length > 0 && (
-                    <MiniSparkline
-                        data={sparkline}
-                        changeType={changeType}
-                    />
-                )}
-            </div>
-        </CardContent>
-    </Card>
-);
+}: IAnalyticsMetric) => {
+    const Icon = getIcon(iconName);
+    return (
+        <Card className="hover:shadow-md transition-shadow">
+            <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">{title}</CardTitle>
+                <MetricIcon icon={Icon} />
+            </CardHeader>
+            <CardContent className="space-y-3">
+                <div className="flex items-baseline gap-1">
+                    <p className="text-3xl font-bold tracking-tight tabular-nums">
+                        {value}
+                    </p>
+                    {suffix && (
+                        <span className="text-lg font-medium text-muted-foreground">
+                            {suffix}
+                        </span>
+                    )}
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                    <ChangeIndicator change={change} changeType={changeType} />
+                    {sparkline && sparkline.length > 0 && (
+                        <MiniSparkline
+                            data={sparkline}
+                            changeType={changeType}
+                        />
+                    )}
+                </div>
+            </CardContent>
+        </Card>
+    );
+};
 
 const MetricIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
     <div className="size-9 rounded-lg bg-muted flex items-center justify-center shrink-0">
@@ -149,7 +153,7 @@ interface IAnalyticsMetric {
     suffix?: string;
     change: string;
     changeType: 'up' | 'down' | 'neutral';
-    icon: LucideIcon;
+    icon: string;
     sparkline?: number[];
 }
 

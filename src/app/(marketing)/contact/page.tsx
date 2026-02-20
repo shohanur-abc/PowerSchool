@@ -311,28 +311,28 @@ export default function ContactPage() {
                 subtitle="We track and optimize our response times across every channel to ensure your school never waits. Here are our current averages."
                 channels={[
                     {
-                        icon: MessageSquare,
+                        icon: 'MessageSquare',
                         channel: 'Live Chat',
                         averageTime: 'Under 2 minutes',
                         satisfactionPercent: 98,
                         note: 'Instant connection during business hours with education-trained agents.',
                     },
                     {
-                        icon: Phone,
+                        icon: 'Phone',
                         channel: 'Phone Support',
                         averageTime: 'Under 5 minutes',
                         satisfactionPercent: 96,
                         note: 'Direct line to specialists — no automated phone trees.',
                     },
                     {
-                        icon: Mail,
+                        icon: 'Mail',
                         channel: 'Email Support',
                         averageTime: 'Within 2 hours',
                         satisfactionPercent: 94,
                         note: 'Detailed responses with step-by-step guides and screenshots.',
                     },
                     {
-                        icon: Video,
+                        icon: 'Video',
                         channel: 'Video / Screen Share',
                         averageTime: 'Scheduled within 24 hours',
                         satisfactionPercent: 99,

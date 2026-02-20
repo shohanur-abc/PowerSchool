@@ -1,4 +1,5 @@
 import { type LucideIcon, TrendingUp, TrendingDown } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import {
     Card,
     CardContent,
@@ -33,34 +34,37 @@ const StatCard = ({
     value,
     change,
     changeType,
-    icon: Icon,
+    icon: iconName,
     description,
-}: IStaffStatItem) => (
-    <Card className="hover:shadow-md transition-shadow">
-        <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{title}</CardTitle>
-            <StatIcon icon={Icon} />
-        </CardHeader>
-        <CardContent className="space-y-1.5">
-            <p className="text-3xl font-bold tracking-tight tabular-nums">
-                {value}
-            </p>
-            <div className="flex items-center gap-2">
-                {change && changeType && (
-                    <ChangeIndicator
-                        change={change}
-                        changeType={changeType}
-                    />
-                )}
-                {description && (
-                    <CardDescription className="text-xs">
-                        {description}
-                    </CardDescription>
-                )}
-            </div>
-        </CardContent>
-    </Card>
-);
+}: IStaffStatItem) => {
+    const Icon = getIcon(iconName);
+    return (
+        <Card className="hover:shadow-md transition-shadow">
+            <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">{title}</CardTitle>
+                <StatIcon icon={Icon} />
+            </CardHeader>
+            <CardContent className="space-y-1.5">
+                <p className="text-3xl font-bold tracking-tight tabular-nums">
+                    {value}
+                </p>
+                <div className="flex items-center gap-2">
+                    {change && changeType && (
+                        <ChangeIndicator
+                            change={change}
+                            changeType={changeType}
+                        />
+                    )}
+                    {description && (
+                        <CardDescription className="text-xs">
+                            {description}
+                        </CardDescription>
+                    )}
+                </div>
+            </CardContent>
+        </Card>
+    );
+};
 
 const StatIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
     <div className="size-9 rounded-lg bg-muted flex items-center justify-center shrink-0">
@@ -191,7 +195,7 @@ interface IStaffStatItem {
     value: string;
     change?: string;
     changeType?: 'up' | 'down';
-    icon: LucideIcon;
+    icon: string;
     description?: string;
 }
 

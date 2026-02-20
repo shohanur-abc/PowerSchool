@@ -1,4 +1,4 @@
-import { type LucideIcon, BookOpen, ClipboardList, CalendarDays } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
     Card,
@@ -29,9 +29,9 @@ export default function WelcomeBanner({
                     <p className="text-sm text-muted-foreground">{date}</p>
                 </div>
                 <div className="flex flex-wrap gap-3">
-                    <QuickStat icon={BookOpen} label="Classes Today" value={classesToday} />
-                    <QuickStat icon={ClipboardList} label="Pending Tasks" value={pendingTasks} />
-                    <QuickStat icon={CalendarDays} label="Events" value={upcomingEvents} />
+                    <QuickStat icon="BookOpen" label="Classes Today" value={classesToday} />
+                    <QuickStat icon="ClipboardList" label="Pending Tasks" value={pendingTasks} />
+                    <QuickStat icon="CalendarDays" label="Events" value={upcomingEvents} />
                 </div>
             </CardContent>
         </Card>
@@ -39,15 +39,19 @@ export default function WelcomeBanner({
 }
 
 // ============= CHILD COMPONENTS =============
-const QuickStat = ({ icon: Icon, label, value }: IQuickStat) => (
-    <div className="flex items-center gap-2 rounded-lg border bg-muted/50 px-3 py-2">
-        <Icon className="size-4 text-muted-foreground shrink-0" />
-        <div>
-            <p className="text-xs text-muted-foreground">{label}</p>
-            <p className="text-sm font-semibold tabular-nums">{value}</p>
+const QuickStat = ({ icon: iconName, label, value }: IQuickStat) => {
+    const Icon = getIcon(iconName);
+
+    return (
+        <div className="flex items-center gap-2 rounded-lg border bg-muted/50 px-3 py-2">
+            <Icon className="size-4 text-muted-foreground shrink-0" />
+            <div>
+                <p className="text-xs text-muted-foreground">{label}</p>
+                <p className="text-sm font-semibold tabular-nums">{value}</p>
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 // ============= HELPERS =============
 const getInitials = (name: string) =>
@@ -67,7 +71,7 @@ const getGreeting = () => {
 
 // ============= TYPES =============
 interface IQuickStat {
-    icon: LucideIcon;
+    icon: string;
     label: string;
     value: number;
 }

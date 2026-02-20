@@ -1,6 +1,7 @@
 'use client';
 
-import { type LucideIcon, Star, Play, Clock } from 'lucide-react';
+import { Star, Play, Clock } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import {
     Card,
     CardContent,
@@ -87,11 +88,14 @@ const FavoriteCard = ({
     </div>
 );
 
-const FavoriteIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
-    <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
-        <Icon className="size-4 text-primary" />
-    </div>
-);
+const FavoriteIcon = ({ icon: iconName }: { icon: string }) => {
+    const Icon = getIcon(iconName);
+    return (
+        <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
+            <Icon className="size-4 text-primary" />
+        </div>
+    );
+};
 
 const EmptyState = () => (
     <div className="flex flex-col items-center justify-center py-8 text-center">
@@ -110,7 +114,7 @@ interface IFavoriteReport {
     id: string;
     name: string;
     description?: string;
-    icon: LucideIcon;
+    icon: string;
     lastRunAt: string;
 }
 

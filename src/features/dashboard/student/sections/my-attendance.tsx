@@ -1,6 +1,5 @@
 import { cva } from 'class-variance-authority';
-import { CalendarCheck, CalendarX, Clock, CalendarDays } from 'lucide-react';
-import { type LucideIcon } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import { Badge } from '@/components/ui/badge';
 import {
     Card,
@@ -33,10 +32,10 @@ export default function MyAttendance({
             </CardHeader>
             <CardContent className="space-y-4">
                 <div className="@container grid grid-cols-2 @sm:grid-cols-4 gap-3">
-                    <AttendanceStat icon={CalendarDays} label="Total Days" value={totalDays} />
-                    <AttendanceStat icon={CalendarCheck} label="Present" value={present} />
-                    <AttendanceStat icon={CalendarX} label="Absent" value={absent} />
-                    <AttendanceStat icon={Clock} label="Late" value={late} />
+                    <AttendanceStat icon="CalendarDays" label="Total Days" value={totalDays} />
+                    <AttendanceStat icon="CalendarCheck" label="Present" value={present} />
+                    <AttendanceStat icon="CalendarX" label="Absent" value={absent} />
+                    <AttendanceStat icon="Clock" label="Late" value={late} />
                 </div>
                 <div className="space-y-1.5">
                     <div className="flex items-center justify-between text-sm">
@@ -52,22 +51,26 @@ export default function MyAttendance({
 
 // ============= CHILD COMPONENTS =============
 const AttendanceStat = ({
-    icon: Icon,
+    icon: iconName,
     label,
     value,
 }: {
-    icon: LucideIcon;
+    icon: string;
     label: string;
     value: number;
-}) => (
-    <div className="flex items-center gap-2 rounded-lg border p-2.5">
-        <Icon className="size-4 text-muted-foreground shrink-0" />
-        <div>
-            <p className="text-xs text-muted-foreground">{label}</p>
-            <p className="text-sm font-semibold tabular-nums">{value}</p>
+}) => {
+    const Icon = getIcon(iconName);
+
+    return (
+        <div className="flex items-center gap-2 rounded-lg border p-2.5">
+            <Icon className="size-4 text-muted-foreground shrink-0" />
+            <div>
+                <p className="text-xs text-muted-foreground">{label}</p>
+                <p className="text-sm font-semibold tabular-nums">{value}</p>
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 // ============= HELPERS =============
 const getAttendanceStatus = (percent: number): TAttendanceStatus => {

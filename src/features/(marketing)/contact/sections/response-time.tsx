@@ -1,10 +1,10 @@
 'use client';
 
-import type { LucideIcon } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import Heading from '@/components/heading';
 import { Section } from '@/components/section';
+import { getIcon } from '@/lib/icons';
 
 // ============= MAIN COMPONENT =============
 export default function ResponseTime({ eyebrow, title, subtitle, channels }: IResponseTime) {
@@ -25,25 +25,28 @@ const ChannelsGrid = ({ channels }: { channels: IResponseChannel[] }) => (
     </div>
 );
 
-const ChannelCard = ({ icon: Icon, channel, averageTime, satisfactionPercent, note }: IResponseChannel) => (
-    <Card>
-        <CardHeader>
-            <div className="flex items-center gap-3">
-                <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Icon className="size-5 text-primary" />
+const ChannelCard = ({ icon: iconName, channel, averageTime, satisfactionPercent, note }: IResponseChannel) => {
+    const Icon = getIcon(iconName);
+    return (
+        <Card>
+            <CardHeader>
+                <div className="flex items-center gap-3">
+                    <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                        <Icon className="size-5 text-primary" />
+                    </div>
+                    <div>
+                        <CardTitle>{channel}</CardTitle>
+                        <p className="text-sm text-muted-foreground">{averageTime}</p>
+                    </div>
                 </div>
-                <div>
-                    <CardTitle>{channel}</CardTitle>
-                    <p className="text-sm text-muted-foreground">{averageTime}</p>
-                </div>
-            </div>
-        </CardHeader>
-        <CardContent className="space-y-3">
-            <SatisfactionBar label="Satisfaction" value={satisfactionPercent} />
-            {note && <p className="text-xs text-muted-foreground">{note}</p>}
-        </CardContent>
-    </Card>
-);
+            </CardHeader>
+            <CardContent className="space-y-3">
+                <SatisfactionBar label="Satisfaction" value={satisfactionPercent} />
+                {note && <p className="text-xs text-muted-foreground">{note}</p>}
+            </CardContent>
+        </Card>
+    );
+};
 
 const SatisfactionBar = ({ label, value }: { label: string; value: number }) => (
     <div className="space-y-1.5">
@@ -64,7 +67,7 @@ interface IResponseTime {
 }
 
 interface IResponseChannel {
-    icon: LucideIcon;
+    icon: string;
     channel: string;
     averageTime: string;
     satisfactionPercent: number;

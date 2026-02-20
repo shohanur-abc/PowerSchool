@@ -7,6 +7,7 @@ import {
     Clock,
     AlertTriangle,
 } from 'lucide-react';
+import { getIcon } from '@/lib/icons';
 import {
     Card,
     CardContent,
@@ -33,27 +34,30 @@ const StatCard = ({
     amount,
     change,
     changeType,
-    icon: Icon,
+    icon: iconName,
     description,
-}: IFeeStatItem) => (
-    <Card className="hover:shadow-md transition-shadow">
-        <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{title}</CardTitle>
-            <StatIcon icon={Icon} />
-        </CardHeader>
-        <CardContent className="space-y-1.5">
-            <p className="text-3xl font-bold tracking-tight tabular-nums">
-                {formatCurrency(amount)}
-            </p>
-            <div className="flex items-center gap-2">
-                <ChangeIndicator change={change} changeType={changeType} />
-                <CardDescription className="text-xs">
-                    {description}
-                </CardDescription>
-            </div>
-        </CardContent>
-    </Card>
-);
+}: IFeeStatItem) => {
+    const Icon = getIcon(iconName);
+    return (
+        <Card className="hover:shadow-md transition-shadow">
+            <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">{title}</CardTitle>
+                <StatIcon icon={Icon} />
+            </CardHeader>
+            <CardContent className="space-y-1.5">
+                <p className="text-3xl font-bold tracking-tight tabular-nums">
+                    {formatCurrency(amount)}
+                </p>
+                <div className="flex items-center gap-2">
+                    <ChangeIndicator change={change} changeType={changeType} />
+                    <CardDescription className="text-xs">
+                        {description}
+                    </CardDescription>
+                </div>
+            </CardContent>
+        </Card>
+    );
+};
 
 const StatIcon = ({ icon: Icon }: { icon: LucideIcon }) => (
     <div className="size-9 rounded-lg bg-muted flex items-center justify-center shrink-0">
@@ -106,7 +110,7 @@ interface IFeeStatItem {
     amount: number;
     change: string;
     changeType: 'up' | 'down';
-    icon: LucideIcon;
+    icon: string;
     description: string;
 }
 

@@ -44,17 +44,33 @@ export const DASHBOARD_MENU = [
         items: [
             {
                 label: "Attendance",
-                href: ROUTES.dashboard.attendance.root,
+                items: [
+                    { label: "Overview", href: ROUTES.dashboard.attendance.root },
+                    { label: "Mark Attendance", href: ROUTES.dashboard.attendance.mark },
+                    { label: "Corrections", href: ROUTES.dashboard.attendance.corrections },
+                    { label: "Reports", href: ROUTES.dashboard.attendance.reports },
+                ],
                 icon: <CheckCircle2 />,
             },
             {
                 label: "Results",
-                href: ROUTES.dashboard.results.root,
+                items: [
+                    { label: "Overview", href: ROUTES.dashboard.results.root },
+                    { label: "Enter Results", href: ROUTES.dashboard.results.enter },
+                    { label: "View Results", href: ROUTES.dashboard.results.view },
+                    { label: "Report Cards", href: ROUTES.dashboard.results.reportCards },
+                    { label: "Analytics", href: ROUTES.dashboard.results.analytics },
+                ],
                 icon: <BarChart3 />,
             },
             {
                 label: "Reports",
-                href: ROUTES.dashboard.reports.root,
+                items: [
+                    { label: "Overview", href: ROUTES.dashboard.reports.root },
+                    { label: "Standard Reports", href: ROUTES.dashboard.reports.standard },
+                    { label: "Custom Reports", href: ROUTES.dashboard.reports.custom },
+                    { label: "Analytics", href: ROUTES.dashboard.reports.analytics },
+                ],
                 icon: <FileText />,
             },
         ],
@@ -64,7 +80,13 @@ export const DASHBOARD_MENU = [
         items: [
             {
                 label: "Fees",
-                href: ROUTES.dashboard.fees.root,
+                items: [
+                    { label: "Overview", href: ROUTES.dashboard.fees.root },
+                    { label: "Collection", href: ROUTES.dashboard.fees.collection },
+                    { label: "Tracking", href: ROUTES.dashboard.fees.tracking },
+                    { label: "Statements", href: ROUTES.dashboard.fees.statements },
+                    { label: "Fee Structure", href: ROUTES.dashboard.fees.structure },
+                ],
                 icon: <DollarSign />,
             },
         ],
@@ -74,12 +96,24 @@ export const DASHBOARD_MENU = [
         items: [
             {
                 label: "Operations",
-                href: ROUTES.dashboard.operations.root,
+                items: [
+                    { label: "Overview", href: ROUTES.dashboard.operations.root },
+                    { label: "Calendar", href: ROUTES.dashboard.operations.calendar },
+                    { label: "Classes", href: ROUTES.dashboard.operations.classes },
+                    { label: "Staff", href: ROUTES.dashboard.operations.staff },
+                    { label: "Students", href: ROUTES.dashboard.operations.students },
+                    { label: "Settings", href: ROUTES.dashboard.operations.settings },
+                ],
                 icon: <Settings />,
             },
             {
                 label: "Notices",
-                href: ROUTES.dashboard.notices.root,
+                items: [
+                    { label: "Overview", href: ROUTES.dashboard.notices.root },
+                    { label: "Manage", href: ROUTES.dashboard.notices.manage },
+                    { label: "Publish", href: ROUTES.dashboard.notices.publish },
+                    { label: "Analytics", href: ROUTES.dashboard.notices.analytics },
+                ],
                 icon: <Bell />,
             },
         ],
@@ -89,12 +123,21 @@ export const DASHBOARD_MENU = [
         items: [
             {
                 label: "Users",
-                href: ROUTES.dashboard.users.root,
+                items: [
+                    { label: "Overview", href: ROUTES.dashboard.users.root },
+                    { label: "Credentials", href: ROUTES.dashboard.users.credentials },
+                    { label: "Activity", href: ROUTES.dashboard.users.activity },
+                ],
                 icon: <Users />,
             },
             {
                 label: "Roles",
-                href: ROUTES.dashboard.roles.root,
+                items: [
+                    { label: "Overview", href: ROUTES.dashboard.roles.root },
+                    { label: "Manage Roles", href: ROUTES.dashboard.roles.manage },
+                    { label: "Permissions", href: ROUTES.dashboard.roles.permissions },
+                    { label: "Role Users", href: ROUTES.dashboard.roles.users },
+                ],
                 icon: <Shield />,
             },
             {

@@ -1,15 +1,5 @@
 import type { Metadata } from 'next';
 import {
-  Users,
-  CalendarCheck,
-  DollarSign,
-  ClipboardCheck,
-  ClipboardList,
-  Megaphone,
-  BarChart3,
-  UserPlus,
-} from 'lucide-react';
-import {
   StatsCards,
   AttendanceChart,
   RecentActivity,
@@ -38,7 +28,7 @@ const statsData = [
     value: '1,234',
     change: '+2.5%',
     changeType: 'up' as const,
-    icon: Users,
+    icon: 'Users',
     description: 'from last month',
   },
   {
@@ -46,7 +36,7 @@ const statsData = [
     value: '94.2%',
     change: '+1.1%',
     changeType: 'up' as const,
-    icon: CalendarCheck,
+    icon: 'CalendarCheck',
     description: 'vs last week',
   },
   {
@@ -54,7 +44,7 @@ const statsData = [
     value: '$45,321',
     change: '+8.3%',
     changeType: 'up' as const,
-    icon: DollarSign,
+    icon: 'DollarSign',
     description: 'this month',
   },
   {
@@ -62,7 +52,7 @@ const statsData = [
     value: '12',
     change: '-3',
     changeType: 'down' as const,
-    icon: ClipboardCheck,
+    icon: 'ClipboardCheck',
     description: 'since yesterday',
   },
 ];
@@ -121,12 +111,12 @@ const classPerformanceData = [
 ];
 
 const quickActionsData = [
-  { label: 'Mark Attendance', icon: CalendarCheck, href: ROUTES.dashboard.attendance.mark, description: 'Record daily student attendance for your class' },
-  { label: 'Enter Results', icon: ClipboardList, href: ROUTES.dashboard.results.enter, description: 'Enter exam scores and grades for students' },
-  { label: 'Collect Fees', icon: DollarSign, href: ROUTES.dashboard.fees.collection, description: 'Process fee payments and generate receipts' },
-  { label: 'Publish Notice', icon: Megaphone, href: ROUTES.dashboard.notices.publish, description: 'Create and publish announcements for the school' },
-  { label: 'Generate Report', icon: BarChart3, href: ROUTES.dashboard.reports.root, description: 'Generate attendance, fee, and performance reports' },
-  { label: 'Add Student', icon: UserPlus, href: ROUTES.dashboard.operations.students, description: 'Enroll a new student into the system' },
+  { label: 'Mark Attendance', icon: 'CalendarCheck', href: ROUTES.dashboard.attendance.mark, description: 'Record daily student attendance for your class' },
+  { label: 'Enter Results', icon: 'ClipboardList', href: ROUTES.dashboard.results.enter, description: 'Enter exam scores and grades for students' },
+  { label: 'Collect Fees', icon: 'DollarSign', href: ROUTES.dashboard.fees.collection, description: 'Process fee payments and generate receipts' },
+  { label: 'Publish Notice', icon: 'Megaphone', href: ROUTES.dashboard.notices.publish, description: 'Create and publish announcements for the school' },
+  { label: 'Generate Report', icon: 'BarChart3', href: ROUTES.dashboard.reports.root, description: 'Generate attendance, fee, and performance reports' },
+  { label: 'Add Student', icon: 'UserPlus', href: ROUTES.dashboard.operations.students, description: 'Enroll a new student into the system' },
 ];
 
 const noticesData = [
