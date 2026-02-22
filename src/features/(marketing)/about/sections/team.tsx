@@ -16,7 +16,15 @@ export default function Team({ eyebrow, title, subtitle, members }: ITeam) {
 }
 
 // ============= CHILD COMPONENTS =============
-const TeamGrid = ({ members }: { members: ITeam['members'] }) => (
+const TeamGrid = ({ members }: {
+    members: {
+        name: string;
+        role: string;
+        avatar: string;
+        bio: string;
+        socials?: { platform: string; href: string }[];
+    }[];
+}) => (
     <div className="grid grid-cols-1 @sm:grid-cols-2 @lg:grid-cols-3 @3xl:grid-cols-4 gap-6">
         {members.map((member, i) => (
             <MemberCard key={i} {...member} />
