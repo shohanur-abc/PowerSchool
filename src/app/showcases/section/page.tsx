@@ -101,7 +101,7 @@ export default function Page() {
                 subtitle="With custom className and container classes"
                 cols={3}
                 className="gap-6"
-                cns={{
+                classNames={{
                     outerContainer: "border-t",
                     innerContainer: "py-16",
                     headingContainer: "mb-16",
@@ -141,7 +141,7 @@ export default function Page() {
                 subtitle="All props demonstrated with complete styling and content"
                 align="center"
                 cols={3}
-                cns={{
+                classNames={{
                     outerContainer: "border-t",
                     headingContainer: "mb-8",
                 }}

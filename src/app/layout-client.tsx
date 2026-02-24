@@ -11,7 +11,7 @@ export default function LayoutClient({ children }: { children: React.ReactNode }
     const pathname = usePathname();
     const isMobile = useIsMobile();
 
-    if (pathname.startsWith('/dashboard')) return <>{children}</>;
+    if (['dashboard', 'showcases'].some(route => pathname.startsWith(`/${route}`))) return <>{children}</>;
 
     const Nav = isMobile ? MobileNav : DesktopNav;
     return (
