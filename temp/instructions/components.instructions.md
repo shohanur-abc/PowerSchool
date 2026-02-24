@@ -15,15 +15,13 @@ import { Input } from '@/components/ui/input';
 import { Section } from '@/components/section';
 
 // ============= MAIN COMPONENT =============
-// Layout Orchestrator - Controls only structure and composition
-// - Use ONLY layout-related classes (grid, flex, max-w-7xl, gap, padding)
-// - NO design details (colors, borders, shadows, hover effects)
-// - NO business logic or data transformations
-// - Distribute responsibilities to child components via props
-// - All child components should be visible and merged here for easy layout overview
-// - NO data fetching or manipulation - that belongs in page.tsx
-// - Props drilling: Main → Children (direct) | Children → Grandchildren (AVOID - compose instead)
-// - Purpose: Instant visual understanding of page layout and component hierarchy
+// - Only layout controlling (grid, flex, max-w-7xl, gap) classess allowed 
+// - No design details, No business logic
+// - Props দিয়ে children component গুলোকে responsibility distribute করে দিবে
+// - সব children Components এখানেই merged অবস্থায় থাকবে।
+// - যেন পুরো component-এর layout overview এখান থেকে বোঝা যাবে
+// - এখানে data passing করা হবে না।  data passing করা হবে page.tsx থেকে 
+// - Main থেকে Children components এ props drilling করবে কিন্তু children থেকে Grand children components এ props drilling avoid করবে।
 
 export default function Hero({title, description, searchBar, trendingItems}: IHero) {
     return (
@@ -38,13 +36,10 @@ export default function Hero({title, description, searchBar, trendingItems}: IHe
 }
 
 // ============= CHILD COMPONENTS =============
-// Presentation Components - All visual logic lives here
-// - Arrow functions exclusively (consistent with shadcn/ui patterns)
-// - Handle ALL design and styling (Tailwind classes, conditionals, hover states)
-// - Handle UI interactions (form inputs, click handlers, state changes)
-// - Completely self-contained and reusable
-// - Props-driven: Accept data and callbacks, no side effects
-// - Isolated from main component concerns - easy to test and refactor
+// - Arrow function only
+// - Design + UI logic এখানেই থাকবে
+// - Props-driven
+// - Main component থেকে isolated
 const Title = ({ text, highlight }: IHero['title']) => (
     <h1 className="text-4xl @sm:text-5xl @lg:text-6xl font-bold tracking-tight text-center">
         {text} {highlight && <span className="text-primary">{highlight}</span>}
@@ -115,29 +110,19 @@ const TrendingItems = ({ items } : { items: IHero['trendingItems']; }) => (
 );
 
 // =========== HELPERS =============
-// Component-Scoped Utilities - For data transformation and calculations
-// - Use ONLY for this component (don't create global utils here)
-// - Examples: data normalization, DTO conversions, object mapping, calculations
-// - Keep close to where they're used for better maintainability
-// - Note: Not needed for every component - only when logic becomes complex
+// - Component-scoped utilities only (neither feature or global scoped)
+// - dto, data conversion, object mapping, etc
+// - No helpers needed for this component
 
 
 // ============= VARIANTS =============
-// Conditional Styling with class-variance-authority (CVA)
-// - ALL conditional styling must use cva() - NEVER use inline ternaries for classes
-// - Example: Instead of `className={active ? 'bg-primary' : 'bg-secondary'}` → use cva
-// - DO NOT use cva for static, non-conditional classes (e.g. 'text-sm', 'gap-4')
-// - Keep variant definitions near related components for better organization
-// - Note: No variants created in this example because there's no conditional styling
+// - All conditional styling must use cva, No inline conditional class logic
+// - but cva mustn't be used for non-conditional styling (e.g. static "text-sm" or "bg-white" class)
+// - এখানে যেহেতু conditional styling নেই তাই এখানে variant বানানো হয়নি। 
 
 
 // ============= TYPES =============
-// TypeScript Interfaces - Define the data contract
-// - Always place at the END of the file after all implementations
-// - Use interface prefix 'I' for clarity (e.g., IHero, IFeature)
-// - Use Pick<> and indexed access to reuse parent types (see typescript.instructions.md)
-// - Keep types organized and grouped logically
-// - Be specific and avoid 'any' - let TypeScript help you catch errors
+// - এভাবে types লিখবে এবং এটা সবার শেষে।
 interface IHero {
     title: {
         text: string;
@@ -158,14 +143,9 @@ interface IHero {
 }
 
 
-// ============= GOALS =============
-// Why follow this structure?
-// ✓ Readability: Scan top-to-bottom and instantly understand what the component does
-// ✓ Predictability: Every component follows the same structure - no surprises
-// ✓ Separation of Concerns: Layout, presentation, logic, helpers, types - each in its place
-// ✓ Maintainability: Changes are isolated, easy to debug and refactor
-// ✓ Team Consistency: All developers follow the same patterns and conventions
-// ✓ Code Review Friendly: Clear structure makes peer reviews faster and more effective
+// Goal
+// - Readability from top to bottom
+// - Predictable component structure
+// - Clear separation of concerns
+// - Consistent patterns for component organization
 ```
-
-

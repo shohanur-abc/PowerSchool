@@ -1,0 +1,21 @@
+Create reusable and highly flexible UI components that dynamically determine the rendered element and applied styles based on their props types.
+
+like list, accordion, tab, section, cards, charts, counter, errorpage, searchbox, form fields, include everything
+examples #file:list.tsx , #file:section.tsx , #file:accordion.tsx , #file:input.tsx 
+
+
+Ensure extensibility by supporting a classNames prop for granular style customization.
+
+These components will be used to build versatile sections and dashboard components.
+
+You can create composite reusable components — meaning they are composed of multiple smaller reusable components, and the final composed component is also reusable.
+
+your working foldersrc/components/molecules
+showcases you works at src/app/showcases
+create a navigation system to navigate showcases at #file:layout.tsx 
+you can also refine existisng src/components/molecules
+
+fix dev time errors with next-dev-tools and run time with typescript
+init all
+
+create such 200x reusable, flexible components
