@@ -15,7 +15,7 @@ export default function Values({ eyebrow, title, subtitle, values }: IValues) {
 
 // ============= CHILD COMPONENTS =============
 const ValuesGrid = ({ values }: { values: IValues['values'] }) => (
-    <div className="grid grid-cols-1 @sm:grid-cols-2 @3xl:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 @lg:grid-cols-2 @3xl:grid-cols-3 gap-8">
         {values.map((value, i) => (
             <ValueCard key={i} {...value} />
         ))}

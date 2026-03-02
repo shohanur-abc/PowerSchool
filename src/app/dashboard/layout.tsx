@@ -1,28 +1,55 @@
-"use client";
+import type { Metadata } from "next"
+import { auth } from '@/lib/auth';
 import { Separator } from '@/components/ui/separator';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import DashboardSidebar from '@/features/navigation/dashboard-sidebar';
 import NotificationMenu from '@/features/navigation/notification-menu';
 import UserMenu from '@/features/navigation/user-menu';
 import { ROUTES } from '@/lib/routes';
-import React from 'react';
-import { LayoutDashboard, CheckCircle2, BarChart3, FileText, DollarSign, Settings, Bell, Users, Shield, Lock, GraduationCap, BookOpen, UserCheck, Crown } from 'lucide-react';
+import { LayoutDashboard, CheckCircle2, BarChart3, FileText, DollarSign, Settings, Bell, Users, Shield, Lock, GraduationCap, UserCog, School } from 'lucide-react';
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export const metadata: Metadata = {
+    title: {
+        default: "Dashboard | EduPortal",
+        template: "%s | EduPortal",
+    },
+    description: "EduPortal dashboard for managing your institution",
+}
+
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+    const session = await auth()
+
+    const user = session?.user ? {
+        name: session.user.name || 'User',
+        email: session.user.email || '',
+        role: session.user.role || 'user',
+        avatar: session.user.image,
+    } : null
+
+    if (!user) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="text-center">
+                    <h1 className="text-2xl font-bold">Not Authenticated</h1>
+                    <p className="text-muted-foreground">Please log in to continue</p>
+                </div>
+            </div>
+        )
+    }
     return (
-        <DashboardSidebar sidebarItems={DASHBOARD_MENU} userRole="admin">
+        <DashboardSidebar sidebarItems={DASHBOARD_MENU} userRole={user.role}>
             <header className="bg-background sticky top-0 z-50 flex w-full items-center border-b h-14 shrink-0">
                 <div className="flex h-14 w-full items-center gap-2 px-4">
                     <SidebarTrigger className="-ml-1" />
                     <Separator orientation="vertical" className="mr-2 h-6" />
-                    <h1 className="font-semibold text-sm">Dashboard</h1>
+                    <h1 className="font-semibold text-sm">EduPortal</h1>
                     <div className="ml-auto flex items-center gap-4">
                         <NotificationMenu notifications={notifications} unreadCount={1} />
                         <UserMenu user={user} />
                     </div>
                 </div>
             </header>
-            <main className='p-4'>{children}</main>
+            <main className="@container/main p-4 md:p-6">{children}</main>
         </DashboardSidebar>
     );
 }
@@ -34,7 +61,7 @@ export const DASHBOARD_MENU = [
         items: [
             {
                 label: "Overview",
-                href: ROUTES.dashboard.home,
+                href: ROUTES.dashboard.overview,
                 icon: <LayoutDashboard />,
             },
         ],
@@ -44,33 +71,17 @@ export const DASHBOARD_MENU = [
         items: [
             {
                 label: "Attendance",
-                items: [
-                    { label: "Overview", href: ROUTES.dashboard.attendance.root },
-                    { label: "Mark Attendance", href: ROUTES.dashboard.attendance.mark },
-                    { label: "Corrections", href: ROUTES.dashboard.attendance.corrections },
-                    { label: "Reports", href: ROUTES.dashboard.attendance.reports },
-                ],
+                href: ROUTES.dashboard.attendance.overview,
                 icon: <CheckCircle2 />,
             },
             {
                 label: "Results",
-                items: [
-                    { label: "Overview", href: ROUTES.dashboard.results.root },
-                    { label: "Enter Results", href: ROUTES.dashboard.results.enter },
-                    { label: "View Results", href: ROUTES.dashboard.results.view },
-                    { label: "Report Cards", href: ROUTES.dashboard.results.reportCards },
-                    { label: "Analytics", href: ROUTES.dashboard.results.analytics },
-                ],
+                href: ROUTES.dashboard.results.overview,
                 icon: <BarChart3 />,
             },
             {
                 label: "Reports",
-                items: [
-                    { label: "Overview", href: ROUTES.dashboard.reports.root },
-                    { label: "Standard Reports", href: ROUTES.dashboard.reports.standard },
-                    { label: "Custom Reports", href: ROUTES.dashboard.reports.custom },
-                    { label: "Analytics", href: ROUTES.dashboard.reports.analytics },
-                ],
+                href: ROUTES.dashboard.reports.overview,
                 icon: <FileText />,
             },
         ],
@@ -80,13 +91,7 @@ export const DASHBOARD_MENU = [
         items: [
             {
                 label: "Fees",
-                items: [
-                    { label: "Overview", href: ROUTES.dashboard.fees.root },
-                    { label: "Collection", href: ROUTES.dashboard.fees.collection },
-                    { label: "Tracking", href: ROUTES.dashboard.fees.tracking },
-                    { label: "Statements", href: ROUTES.dashboard.fees.statements },
-                    { label: "Fee Structure", href: ROUTES.dashboard.fees.structure },
-                ],
+                href: ROUTES.dashboard.fees.overview,
                 icon: <DollarSign />,
             },
         ],
@@ -96,24 +101,12 @@ export const DASHBOARD_MENU = [
         items: [
             {
                 label: "Operations",
-                items: [
-                    { label: "Overview", href: ROUTES.dashboard.operations.root },
-                    { label: "Calendar", href: ROUTES.dashboard.operations.calendar },
-                    { label: "Classes", href: ROUTES.dashboard.operations.classes },
-                    { label: "Staff", href: ROUTES.dashboard.operations.staff },
-                    { label: "Students", href: ROUTES.dashboard.operations.students },
-                    { label: "Settings", href: ROUTES.dashboard.operations.settings },
-                ],
+                href: ROUTES.dashboard.operations.overview,
                 icon: <Settings />,
             },
             {
                 label: "Notices",
-                items: [
-                    { label: "Overview", href: ROUTES.dashboard.notices.root },
-                    { label: "Manage", href: ROUTES.dashboard.notices.manage },
-                    { label: "Publish", href: ROUTES.dashboard.notices.publish },
-                    { label: "Analytics", href: ROUTES.dashboard.notices.analytics },
-                ],
+                href: ROUTES.dashboard.notices.overview,
                 icon: <Bell />,
             },
         ],
@@ -123,27 +116,13 @@ export const DASHBOARD_MENU = [
         items: [
             {
                 label: "Users",
-                items: [
-                    { label: "Overview", href: ROUTES.dashboard.users.root },
-                    { label: "Credentials", href: ROUTES.dashboard.users.credentials },
-                    { label: "Activity", href: ROUTES.dashboard.users.activity },
-                ],
+                href: ROUTES.dashboard.users.overview,
                 icon: <Users />,
             },
             {
                 label: "Roles",
-                items: [
-                    { label: "Overview", href: ROUTES.dashboard.roles.root },
-                    { label: "Manage Roles", href: ROUTES.dashboard.roles.manage },
-                    { label: "Permissions", href: ROUTES.dashboard.roles.permissions },
-                    { label: "Role Users", href: ROUTES.dashboard.roles.users },
-                ],
+                href: ROUTES.dashboard.roles.overview,
                 icon: <Shield />,
-            },
-            {
-                label: "Admin",
-                href: ROUTES.dashboard.admin,
-                icon: <Lock />,
             },
         ],
     },
@@ -151,35 +130,33 @@ export const DASHBOARD_MENU = [
         label: "Portals",
         items: [
             {
+                label: "Admin",
+                href: ROUTES.dashboard.admin,
+                icon: <Lock />,
+            },
+            {
                 label: "Teacher",
                 href: ROUTES.dashboard.teacher,
-                icon: <GraduationCap />,
+                icon: <School />,
             },
             {
                 label: "Student",
                 href: ROUTES.dashboard.student,
-                icon: <BookOpen />,
+                icon: <GraduationCap />,
             },
             {
                 label: "Parent",
                 href: ROUTES.dashboard.parent,
-                icon: <UserCheck />,
+                icon: <Users />,
             },
             {
                 label: "Principal",
                 href: ROUTES.dashboard.principal,
-                icon: <Crown />,
+                icon: <UserCog />,
             },
         ],
     },
 ];
-
-const user = {
-    name: 'John Doe',
-    email: 'john@example.com',
-    role: 'admin',
-    avatar: 'https://github.com/shadcn.png',
-};
 
 const notifications = [
     {

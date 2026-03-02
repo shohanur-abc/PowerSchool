@@ -1,14 +1,44 @@
 import { type Metadata } from 'next';
-import { BookOpen, CreditCard, Database, FileText, Globe, GraduationCap, LayoutDashboard, Link2, Lock, Mail, MonitorSmartphone, RefreshCw, Search, Settings, ShieldCheck, Users, Video, Zap, } from 'lucide-react';
+import {
+    BookOpen,
+    CreditCard,
+    Database,
+    FileText,
+    Globe,
+    GraduationCap,
+    LayoutDashboard,
+    Link2,
+    Lock,
+    Mail,
+    MonitorSmartphone,
+    RefreshCw,
+    Search,
+    Settings,
+    ShieldCheck,
+    Users,
+    Video,
+    Zap,
+} from 'lucide-react';
 import { ROUTES } from '@/lib/routes';
-import { Hero, IntegrationGrid, Categories, Featured, Api, Benefits, HowItWorks, Testimonial, Partners, CTA, } from '@/features/(marketing)/integrations';
+import {
+    Hero,
+    IntegrationGrid,
+    Categories,
+    Featured,
+    Api,
+    Benefits,
+    HowItWorks,
+    Testimonial,
+    Partners,
+    CTA,
+} from '@/features/(marketing)/integrations';
 
 // TODO: Add dynamic OG image for integrations page
 // TODO: Add JSON-LD structured data for software integrations
 export const metadata: Metadata = {
-    title: 'Integrations | EduSync — Connect Your School Ecosystem',
+    title: 'Integrations | EduPortal — Connect Your School Ecosystem',
     description:
-        'Seamlessly integrate EduSync with your favorite education tools, payment gateways, communication platforms, and learning management systems. 50+ integrations available.',
+        'Seamlessly integrate EduPortal with your favorite education tools, payment gateways, communication platforms, and learning management systems. 50+ integrations available.',
     keywords: [
         'school management integrations',
         'education software integrations',
@@ -21,9 +51,9 @@ export const metadata: Metadata = {
         'Zoom school integration',
     ],
     openGraph: {
-        title: 'Integrations | EduSync — Connect Your School Ecosystem',
+        title: 'Integrations | EduPortal — Connect Your School Ecosystem',
         description:
-            'Seamlessly integrate EduSync with your favorite education tools, payment gateways, communication platforms, and learning management systems.',
+            'Seamlessly integrate EduPortal with your favorite education tools, payment gateways, communication platforms, and learning management systems.',
         url: ROUTES.marketing.integrations,
         type: 'website',
         images: [
@@ -31,15 +61,15 @@ export const metadata: Metadata = {
                 url: '/placeholder.svg',
                 width: 1200,
                 height: 630,
-                alt: 'EduSync Integrations — Connect Your Entire School Ecosystem',
+                alt: 'EduPortal Integrations — Connect Your Entire School Ecosystem',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Integrations | EduSync — Connect Your School Ecosystem',
+        title: 'Integrations | EduPortal — Connect Your School Ecosystem',
         description:
-            'Seamlessly integrate EduSync with your favorite education tools, payment gateways, communication platforms, and learning management systems.',
+            'Seamlessly integrate EduPortal with your favorite education tools, payment gateways, communication platforms, and learning management systems.',
         images: ['/placeholder.svg'],
     },
 };
@@ -54,7 +84,7 @@ export default function Page() {
                 badge="50+ Integrations"
                 title="Connect Your Entire School"
                 highlight="Ecosystem"
-                description="EduSync integrates seamlessly with the tools your school already uses — from learning platforms and payment gateways to communication apps and government portals. No more switching between systems."
+                description="EduPortal integrates seamlessly with the tools your school already uses — from learning platforms and payment gateways to communication apps and government portals. No more switching between systems."
                 searchPlaceholder="Search integrations (e.g., Google Classroom, Zoom, Stripe)..."
             />
 
@@ -80,26 +110,26 @@ export default function Page() {
             <IntegrationGrid
                 eyebrow="All Integrations"
                 title="Powerful Integrations for Every School Need"
-                subtitle="Connect EduSync to the services your staff, students, and parents rely on daily. Each integration is designed for one-click setup and zero downtime."
+                subtitle="Connect EduPortal to the services your staff, students, and parents rely on daily. Each integration is designed for one-click setup and zero downtime."
                 integrations={[
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/Cp9k8NN2/image.png',
                         name: 'Google Classroom',
                         category: 'Learning Management',
                         description:
-                            'Sync assignments, grades, and rosters automatically between EduSync and Google Classroom. Two-way sync keeps everything up to date.',
+                            'Sync assignments, grades, and rosters automatically between EduPortal and Google Classroom. Two-way sync keeps everything up to date.',
                         connectLabel: 'Connect',
                     },
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/zHrG2Pqc/image.png',
                         name: 'Microsoft Teams',
                         category: 'Communication',
                         description:
-                            'Enable virtual classrooms, staff meetings, and parent conferences directly from EduSync with deep Microsoft Teams integration.',
+                            'Enable virtual classrooms, staff meetings, and parent conferences directly from EduPortal with deep Microsoft Teams integration.',
                         connectLabel: 'Connect',
                     },
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/TD6cbcV1/image.png',
                         name: 'Zoom',
                         category: 'Video Conferencing',
                         description:
@@ -107,7 +137,7 @@ export default function Page() {
                         connectLabel: 'Connect',
                     },
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/B5zHDhwQ/image.png',
                         name: 'Stripe',
                         category: 'Payment Gateways',
                         description:
@@ -115,7 +145,7 @@ export default function Page() {
                         connectLabel: 'Connect',
                     },
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/QjdmKZvX/image.png',
                         name: 'Razorpay',
                         category: 'Payment Gateways',
                         description:
@@ -123,7 +153,7 @@ export default function Page() {
                         connectLabel: 'Connect',
                     },
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/hxF8BnpR/image.png',
                         name: 'Moodle',
                         category: 'Learning Management',
                         description:
@@ -131,7 +161,7 @@ export default function Page() {
                         connectLabel: 'Connect',
                     },
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/5XkrCj9s/image.png',
                         name: 'Canvas LMS',
                         category: 'Learning Management',
                         description:
@@ -139,7 +169,7 @@ export default function Page() {
                         connectLabel: 'Connect',
                     },
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/FkQhxnmV/image.png',
                         name: 'Twilio',
                         category: 'Communication',
                         description:
@@ -147,7 +177,7 @@ export default function Page() {
                         connectLabel: 'Connect',
                     },
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/bM6W832r/image.png',
                         name: 'Google Drive',
                         category: 'Document Management',
                         description:
@@ -155,7 +185,7 @@ export default function Page() {
                         connectLabel: 'Connect',
                     },
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/1tX8qCgw/image.png',
                         name: 'SendGrid',
                         category: 'Communication',
                         description:
@@ -163,7 +193,7 @@ export default function Page() {
                         connectLabel: 'Connect',
                     },
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/MyWX9frL/image.png',
                         name: 'Tally (SARAL)',
                         category: 'Government & Compliance',
                         description:
@@ -171,7 +201,7 @@ export default function Page() {
                         connectLabel: 'Connect',
                     },
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/G3k1KXgj/image.png',
                         name: 'Biometric Devices',
                         category: 'Hardware & Devices',
                         description:
@@ -188,11 +218,11 @@ export default function Page() {
                 subtitle="These are the integrations schools love the most. Deep, purpose-built connections that save hours of admin work every week."
                 integrations={[
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/Cp9k8NN2/image.png',
                         name: 'Google Classroom',
                         category: 'Learning Management',
                         description:
-                            'The most popular LMS integration. Automatically sync class rosters, assignments, and grades between EduSync and Google Classroom without any manual effort.',
+                            'The most popular LMS integration. Automatically sync class rosters, assignments, and grades between EduPortal and Google Classroom without any manual effort.',
                         highlights: [
                             'Automatic two-way roster syncing with zero duplicates',
                             'Assignments and grades push to both platforms in real time',
@@ -203,11 +233,11 @@ export default function Page() {
                         ctaLabel: 'Learn more',
                     },
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/B5zHDhwQ/image.png',
                         name: 'Stripe',
                         category: 'Payment Gateways',
                         description:
-                            'Collect tuition, transport, and activity fees with the world\'s most trusted payment processor. Full PCI compliance and automatic receipt generation included.',
+                            "Collect tuition, transport, and activity fees with the world's most trusted payment processor. Full PCI compliance and automatic receipt generation included.",
                         highlights: [
                             'Accept credit cards, debit cards, and digital wallets',
                             'Automated fee receipt generation and email delivery',
@@ -218,11 +248,11 @@ export default function Page() {
                         ctaLabel: 'Learn more',
                     },
                     {
-                        logo: '/placeholder.svg',
+                        logo: 'https://i.ibb.co.com/TD6cbcV1/image.png',
                         name: 'Zoom',
                         category: 'Video Conferencing',
                         description:
-                            'Launch virtual classes, parent-teacher conferences, and administrative meetings from anywhere inside EduSync. Calendar sync, recording, and attendance tracking included.',
+                            'Launch virtual classes, parent-teacher conferences, and administrative meetings from anywhere inside EduPortal. Calendar sync, recording, and attendance tracking included.',
                         highlights: [
                             'One-click meeting creation from timetable or calendar',
                             'Automatic attendance logging for virtual sessions',
@@ -238,21 +268,36 @@ export default function Page() {
             <Api
                 eyebrow="Developer API"
                 title="Build Custom Integrations with Our API"
-                description="EduSync provides a comprehensive REST API so your development team can build custom integrations, automate workflows, and connect bespoke systems unique to your institution."
+                description="EduPortal provides a comprehensive REST API so your development team can build custom integrations, automate workflows, and connect bespoke systems unique to your institution."
                 badge="REST API v2 — Stable"
                 features={[
-                    { icon: Lock, text: 'OAuth 2.0 & API key authentication with role-based scopes' },
-                    { icon: RefreshCw, text: 'Real-time webhooks for attendance, fee, and grade events' },
-                    { icon: Database, text: 'Full CRUD operations on students, staff, classes, and fees' },
-                    { icon: Zap, text: 'Rate-limited to 10,000 requests/min with burst support' },
-                    { icon: FileText, text: 'Interactive API docs with Swagger/OpenAPI 3.0 spec' },
+                    {
+                        icon: Lock,
+                        text: 'OAuth 2.0 & API key authentication with role-based scopes',
+                    },
+                    {
+                        icon: RefreshCw,
+                        text: 'Real-time webhooks for attendance, fee, and grade events',
+                    },
+                    {
+                        icon: Database,
+                        text: 'Full CRUD operations on students, staff, classes, and fees',
+                    },
+                    {
+                        icon: Zap,
+                        text: 'Rate-limited to 10,000 requests/min with burst support',
+                    },
+                    {
+                        icon: FileText,
+                        text: 'Interactive API docs with Swagger/OpenAPI 3.0 spec',
+                    },
                 ]}
                 codePreview={{
                     title: 'students.js',
                     language: 'JavaScript',
                     code: `// Fetch all students in Grade 10 with attendance data
 const response = await fetch(
-  'https://api.edusync.io/v2/students?grade=10&include=attendance',
+  'https://api.EduPortal.io/v2/students?grade=10&include=attendance',
   {
     headers: {
       'Authorization': 'Bearer YOUR_API_KEY',
@@ -273,7 +318,7 @@ console.log(\`Found \${pagination.total} students\`);`,
             <Benefits
                 eyebrow="Why Integrate?"
                 title="The Benefits of a Connected School"
-                subtitle="When your tools talk to each other, your school runs smoother. Here's what changes when you connect EduSync with your existing systems."
+                subtitle="When your tools talk to each other, your school runs smoother. Here's what changes when you connect EduPortal with your existing systems."
                 benefits={[
                     {
                         icon: Zap,
@@ -291,7 +336,7 @@ console.log(\`Found \${pagination.total} students\`);`,
                         icon: RefreshCw,
                         title: 'Real-Time Synchronization',
                         description:
-                            'Changes made in any connected platform reflect in EduSync within seconds. No batch processing delays — attendance, grades, and fees sync instantly.',
+                            'Changes made in any connected platform reflect in EduPortal within seconds. No batch processing delays — attendance, grades, and fees sync instantly.',
                     },
                     {
                         icon: LayoutDashboard,
@@ -309,7 +354,7 @@ console.log(\`Found \${pagination.total} students\`);`,
                         icon: Globe,
                         title: 'Works Across Regions',
                         description:
-                            'Whether you\'re in India, the Middle East, Africa, or Southeast Asia, our integrations support local payment gateways, compliance systems, and languages.',
+                            "Whether you're in India, the Middle East, Africa, or Southeast Asia, our integrations support local payment gateways, compliance systems, and languages.",
                     },
                 ]}
             />
@@ -329,7 +374,7 @@ console.log(\`Found \${pagination.total} students\`);`,
                         icon: Link2,
                         title: 'Authorize & Connect',
                         description:
-                            'Click "Connect" and authorize EduSync to communicate with your chosen platform via secure OAuth flow.',
+                            'Click "Connect" and authorize EduPortal to communicate with your chosen platform via secure OAuth flow.',
                     },
                     {
                         icon: Settings,
@@ -347,39 +392,49 @@ console.log(\`Found \${pagination.total} students\`);`,
             />
 
             <Testimonial
-                quote="Before EduSync, our staff spent 3 hours every day manually entering attendance and fee data across platforms. With the Google Classroom and Stripe integrations, everything syncs automatically. We've saved over 15 hours per week and eliminated data entry errors completely."
+                quote="Before EduPortal, our staff spent 3 hours every day manually entering attendance and fee data across platforms. With the Google Classroom and Stripe integrations, everything syncs automatically. We've saved over 15 hours per week and eliminated data entry errors completely."
                 author="Priya Sharma"
                 role="Principal"
                 school="Delhi International Academy"
-                avatar="/placeholder.svg"
-                logo="/placeholder.svg"
+                avatar="https://i.ibb.co.com/Fbrpkc3H/image.png"
+                logo="https://i.ibb.co.com/spwDtGz0/image.png"
             />
 
-            {/* TODO: Replace placeholder logos with actual partner logos */}
             <Partners
                 eyebrow="Trusted Technology Partners"
                 title="Built on Industry-Leading Platforms"
                 subtitle="We partner with the world's most trusted technology companies to deliver reliable, scalable, and secure integrations for schools of all sizes."
                 partners={[
-                    { name: 'Google for Education', logo: '/placeholder.svg' },
-                    { name: 'Microsoft Education', logo: '/placeholder.svg' },
-                    { name: 'Zoom', logo: '/placeholder.svg' },
-                    { name: 'Stripe', logo: '/placeholder.svg' },
-                    { name: 'Twilio', logo: '/placeholder.svg' },
-                    { name: 'Amazon Web Services', logo: '/placeholder.svg' },
-                    { name: 'Razorpay', logo: '/placeholder.svg' },
-                    { name: 'Moodle', logo: '/placeholder.svg' },
-                    { name: 'Canvas', logo: '/placeholder.svg' },
-                    { name: 'SendGrid', logo: '/placeholder.svg' },
-                    { name: 'Cloudflare', logo: '/placeholder.svg' },
-                    { name: 'MongoDB', logo: '/placeholder.svg' },
+                    {
+                        name: 'Google for Education',
+                        logo: 'https://i.ibb.co.com/DHxFXYtd/image.png',
+                    },
+                    {
+                        name: 'Microsoft Education',
+                        logo: 'https://i.ibb.co.com/nZhbBT1/image.png',
+                    },
+                    { name: 'Zoom', logo: 'https://i.ibb.co.com/sJCD3ybs/image.png' },
+                    { name: 'Stripe', logo: 'https://i.ibb.co.com/fzJF1LtF/image.png' },
+                    { name: 'Twilio', logo: 'https://i.ibb.co.com/RGZgkbf7/image.png' },
+                    {
+                        name: 'Amazon Web Services',
+                        logo: 'https://i.ibb.co.com/k2nKhHjt/image.png',
+                    },
+                    { name: 'Razorpay', logo: 'https://i.ibb.co.com/6JpT1pty/image.png' },
+                    { name: 'Moodle', logo: 'https://i.ibb.co.com/q3BLcQfR/image.png' },
+                    { name: 'Canvas', logo: 'https://i.ibb.co.com/kV9n0g87/image.png' },
+                    { name: 'SendGrid', logo: 'https://i.ibb.co.com/JjjWxXqT/image.png' },
+                    {
+                        name: 'Cloudflare',
+                        logo: 'https://i.ibb.co.com/ymDRSsgJ/image.pnghttps://i.ibb.co.com/ymDRSsgJ/image.png',
+                    },
+                    { name: 'MongoDB', logo: 'https://i.ibb.co.com/rK3QfwS0/image.png' },
                 ]}
             />
 
-            {/* TODO: Add UTM tracking to CTA links */}
             <CTA
                 title="Ready to Connect Your School?"
-                description="Join 2,500+ schools already using EduSync integrations to eliminate busywork and create a seamless experience for teachers, parents, and students."
+                description="Join 2,500+ schools already using EduPortal integrations to eliminate busywork and create a seamless experience for teachers, parents, and students."
                 primaryCta={{
                     text: 'Start Free Trial',
                     href: ROUTES.auth.signup,

@@ -89,7 +89,7 @@ export default function Page() {
                     'But we\'re just getting started. With the launch of AI-powered insights and predictive analytics, we\'re entering our next chapter — one where technology doesn\'t just manage schools, but actively helps them improve student outcomes.',
                 ]}
                 image={{
-                    src: '/placeholder.svg',
+                    src: 'https://learningmole.com/wp-content/uploads/2025/07/v2-t5dhi-cc2yt.jpg',
                     alt: 'EduManager founding story — from a small classroom to a global education platform',
                 }}
             />
@@ -286,14 +286,14 @@ export default function Page() {
                 title="Trusted by Industry Leaders"
                 subtitle="We collaborate with leading organizations in education, technology, and policy to deliver the best possible experience for schools."
                 partners={[
-                    { name: 'Google for Education', logo: '/placeholder.svg', href: '#' },
-                    { name: 'Microsoft Education', logo: '/placeholder.svg', href: '#' },
-                    { name: 'AWS EdStart', logo: '/placeholder.svg', href: '#' },
-                    { name: 'UNESCO', logo: '/placeholder.svg', href: '#' },
-                    { name: 'Khan Academy', logo: '/placeholder.svg', href: '#' },
-                    { name: 'Clever', logo: '/placeholder.svg', href: '#' },
-                    { name: 'ClassLink', logo: '/placeholder.svg', href: '#' },
-                    { name: 'Schoology', logo: '/placeholder.svg', href: '#' },
+                    { name: 'Google for Education', logo: '/google.png', href: '#' },
+                    { name: 'Microsoft Education', logo: '/microsoft.png', href: '#' },
+                    { name: 'AWS EdStart', logo: '/Amazon_Web_Services-Logo.wine.png', href: '#' },
+                    { name: 'UNESCO', logo: '/unesco.png', href: '#' },
+                    { name: 'Khan Academy', logo: '/Khan academy.png', href: '#' },
+                    { name: 'Clever', logo: '/Clever.svg', href: '#' },
+                    { name: 'ClassLink', logo: '/classlink.png', href: '#' },
+                    { name: 'Schoology', logo: '/Schoology-Logo-SVG_003.svg', href: '#' },
                 ]}
             />
 

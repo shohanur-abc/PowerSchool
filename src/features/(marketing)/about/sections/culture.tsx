@@ -15,7 +15,7 @@ export default function Culture({ eyebrow, title, subtitle, pillars }: ICulture)
 
 // ============= CHILD COMPONENTS =============
 const PillarsGrid = ({ pillars }: { pillars: ICulture['pillars'] }) => (
-    <div className="grid grid-cols-1 @sm:grid-cols-2 @3xl:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 @sm:grid-cols-2 @5xl:grid-cols-4 gap-6">
         {pillars.map((pillar, i) => (
             <PillarCard key={i} {...pillar} />
         ))}

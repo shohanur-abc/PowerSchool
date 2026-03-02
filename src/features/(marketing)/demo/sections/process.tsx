@@ -15,7 +15,7 @@ export default function DemoProcess({ eyebrow, title, subtitle, steps }: IDemoPr
 
 // ============= CHILD COMPONENTS =============
 const StepsList = ({ steps }: { steps: IDemoProcess['steps'] }) => (
-    <div className="grid grid-cols-1 @md:grid-cols-2 @3xl:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 @3xl:grid-cols-2 @5xl:grid-cols-4 gap-6">
         {steps.map((step, i) => (
             <StepCard key={i} step={step} index={i} isLast={i === steps.length - 1} />
         ))}
@@ -24,7 +24,7 @@ const StepsList = ({ steps }: { steps: IDemoProcess['steps'] }) => (
 
 const StepCard = ({ step, index, isLast }: { step: IProcessStep; index: number; isLast: boolean }) => (
     <div className="relative">
-        <Card className="h-full">
+        <Card className="h-full py-0">
             <CardContent className="pt-8 pb-6 space-y-4 text-center">
                 <StepNumber number={index + 1} />
                 <StepIcon icon={step.icon} />

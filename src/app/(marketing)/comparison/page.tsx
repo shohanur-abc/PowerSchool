@@ -1,7 +1,7 @@
 import { type Metadata } from 'next';
 
 import { Award, BarChart3, CheckCircle, Clock, Cloud, CreditCard, Database, DollarSign, Globe, GraduationCap, Headphones, Lock, MessageSquare, Rocket, School, Settings, Smartphone, TrendingUp, Upload, Users, Zap, } from 'lucide-react';
-import { ComparisonHero, ComparisonTable, Advantages, PricingComparison, Migration, ComparisonTestimonial, FeatureSpotlight, SupportComparison, ComparisonFAQ, ComparisonCTA, } from '@/features/(marketing)/comparison';
+import { ComparisonHero, ComparisonTable, Advantages, Migration, ComparisonTestimonial, FeatureSpotlight, SupportComparison, ComparisonFAQ, ComparisonCTA, } from '@/features/(marketing)/comparison';
 import ROUTES from '@/lib/routes';
 
 // TODO: Add dynamic OG image for comparison page
@@ -297,64 +297,6 @@ export default function ComparisonPage() {
                         title: 'Enterprise-Grade Security',
                         description:
                             'SOC 2 Type II certified, FERPA compliant, end-to-end encryption, and granular role-based access control — without the enterprise price tag.',
-                    },
-                ]}
-            />
-
-            {/* TODO: Add interactive pricing calculator */}
-            <PricingComparison
-                eyebrow="Pricing Comparison"
-                title="More Features, Less Cost"
-                subtitle="See how EduSync delivers significantly more value at a fraction of the price. All plans include unlimited support and every module."
-                plans={[
-                    {
-                        icon: School,
-                        name: 'PowerSchool SIS',
-                        provider: 'PowerSchool',
-                        price: '$8,500',
-                        period: 'year',
-                        features: [
-                            'Basic SIS & attendance',
-                            'Per-module pricing adds up fast',
-                            'Implementation fee: $5,000–$15,000',
-                            'Add-on required for parent portal',
-                            'Add-on required for analytics',
-                            'Phone support: business hours only',
-                        ],
-                        cta: { text: 'View Details', href: ROUTES.marketing.pricing },
-                    },
-                    {
-                        icon: GraduationCap,
-                        name: 'EduSync Complete',
-                        provider: 'EduSync',
-                        price: '$3,600',
-                        period: 'year',
-                        highlighted: true,
-                        features: [
-                            'All modules included — no add-ons',
-                            'Free implementation & data migration',
-                            'Unlimited parent & teacher portals',
-                            'AI-powered analytics & report cards',
-                            'Mobile app for all user roles',
-                            '24/7 priority support included',
-                        ],
-                        cta: { text: 'Start Free Trial', href: ROUTES.auth.signup },
-                    },
-                    {
-                        icon: Database,
-                        name: 'Infinite Campus',
-                        provider: 'Infinite Campus',
-                        price: '$6,200',
-                        period: 'year',
-                        features: [
-                            'Student information system core',
-                            'State reporting included',
-                            'Implementation fee: $3,000–$10,000',
-                            'Limited mobile app functionality',
-                            'Basic analytics dashboard',
-                            'Phone support: weekdays only',
-                        ],
-                        cta: { text: 'View Details', href: ROUTES.marketing.pricing },
                     },
                 ]}
             />

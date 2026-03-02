@@ -19,7 +19,7 @@ export default function Featured({ eyebrow, title, subtitle, integrations }: IFe
 
 // ============= CHILD COMPONENTS =============
 const FeaturedGrid = ({ integrations }: { integrations: IFeaturedItem[] }) => (
-    <div className="grid grid-cols-1 @lg:grid-cols-2 @3xl:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1  @2xl:grid-cols-2 @5xl:grid-cols-3 gap-8">
         {integrations.map((integration, i) => (
             <FeaturedCard key={i} {...integration} />
         ))}
@@ -54,7 +54,7 @@ const FeaturedCard = ({ logo, name, category, description, highlights, href, cta
 
 const LogoBox = ({ logo, name }: { logo: string; name: string }) => (
     <div className="size-14 rounded-xl border bg-muted/50 flex items-center justify-center shrink-0 overflow-hidden relative">
-        <Image src={logo} alt={name} fill className="object-contain p-2" sizes="56px" />
+        <Image src={logo} alt={name} fill className="object-contain rounded-full p-2" sizes="56px" />
     </div>
 );
 

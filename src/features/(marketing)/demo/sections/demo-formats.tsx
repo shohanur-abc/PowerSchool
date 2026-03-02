@@ -16,7 +16,7 @@ export default function DemoFormats({ eyebrow, title, subtitle, formats }: IDemo
 
 // ============= CHILD COMPONENTS =============
 const FormatsGrid = ({ formats }: { formats: IDemoFormats['formats'] }) => (
-    <div className="grid grid-cols-1 @lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 @2xl:grid-cols-2 @5xl:grid-cols-3 gap-6">
         {formats.map((format, i) => (
             <FormatCard key={i} {...format} />
         ))}
@@ -40,7 +40,7 @@ const FormatCard = ({ icon: Icon, name, description, badge, duration, features, 
             )}
         </CardHeader>
         <CardContent className="space-y-4">
-            <p className="text-sm text-muted-foreground text-center leading-relaxed">{description}</p>
+            <p className="text-sm text-muted-foreground text-left leading-relaxed">{description}</p>
             {features && (
                 <FeaturesList features={features} />
             )}

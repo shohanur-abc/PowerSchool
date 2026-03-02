@@ -1,56 +1,78 @@
-"use client";
-import { cn } from '@/lib/utils';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 
-export const DataTable = ({ columns, rows, caption, striped, className, classNames: cns }: DataTableProps) => (
-    <div className={cn("@container", className)}>
-        <Table className={cns?.table}>
-            {caption && <caption className={cn("text-sm text-muted-foreground mb-2 text-left", cns?.caption)}>{caption}</caption>}
-            <TableHeader className={cns?.header}>
-                <TableRow className={cns?.headerRow}>
-                    {columns.map(({ key, label, align }) => (
-                        <TableHead key={key} className={cn(align === 'right' && "text-right", align === 'center' && "text-center", cns?.headerCell)}>
-                            {label}
-                        </TableHead>
-                    ))}
-                </TableRow>
-            </TableHeader>
-            <TableBody className={cns?.body}>
-                {rows.map((row, i) => (
-                    <TableRow key={i} className={cn(striped && i % 2 === 1 && "bg-muted/50", cns?.row)}>
-                        {columns.map(({ key, align, render }) => (
-                            <TableCell key={key} className={cn(align === 'right' && "text-right", align === 'center' && "text-center", cns?.cell)}>
-                                {render ? render(row[key], row) : (row[key] as React.ReactNode)}
-                            </TableCell>
-                        ))}
-                    </TableRow>
-                ))}
-            </TableBody>
-        </Table>
-    </div>
-);
-
+// ============= COMPONENT =============
+export function DataTable<T extends Record<string, unknown>>({
+    title,
+    description,
+    columns,
+    data,
+    className,
+    emptyMessage = "No data found",
+    keyExtractor,
+    loading = false,
+}: DataTableProps<T>) {
+    return (
+        <Card className={cn(className)} >
+            {(title || description) && (
+                <CardHeader>
+                    {title && <CardTitle>{title}</CardTitle>}
+                    {description && <CardDescription>{description}</CardDescription>}
+                </CardHeader>
+            )}
+            <CardContent className="px-3">
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            {columns.map((col) => (
+                                <TableHead key={String(col.key)} className={col.className}>
+                                    {col.header}
+                                </TableHead>
+                            ))}
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {data.length === 0 ? (
+                            <TableRow>
+                                <TableCell colSpan={columns.length} className="h-24 text-center text-muted-foreground">
+                                    {emptyMessage}
+                                </TableCell>
+                            </TableRow>
+                        ) : (
+                            data.map((row, i) => (
+                                <TableRow key={keyExtractor ? keyExtractor(row) : i}>
+                                    {columns.map((col) => (
+                                        <TableCell key={String(col.key)} className={cn(col.cellClassName)}>
+                                            <div data-loading={loading}>{col.render ? col.render(row) : String(row[col.key] ?? "")}</div>
+                                        </TableCell>
+                                    ))}
+                                </TableRow>
+                            ))
+                        )}
+                    </TableBody>
+                </Table>
+            </CardContent>
+        </Card>
+    )
+}
 
 // ============= TYPES =============
-interface DataTableProps {
-    columns: {
-        key: string;
-        label: string;
-        align?: 'left' | 'center' | 'right';
-        render?: (value: unknown, row: Record<string, unknown>) => React.ReactNode;
-    }[];
-    rows: Record<string, unknown>[];
-    caption?: string;
-    striped?: boolean;
-    className?: string;
-    classNames?: {
-        table?: string;
-        caption?: string;
-        header?: string;
-        headerRow?: string;
-        headerCell?: string;
-        body?: string;
-        row?: string;
-        cell?: string;
-    };
+interface Column<T> {
+    key: keyof T | string
+    header: string
+    className?: string
+    cellClassName?: string
+    render?: (row: T) => React.ReactNode
+}
+
+interface DataTableProps<T extends Record<string, unknown>> {
+    title?: string
+    description?: string
+    columns: Column<T>[]
+    data: T[]
+    className?: string
+    emptyMessage?: string
+    keyExtractor?: (row: T) => string
+    loading?: boolean
 }

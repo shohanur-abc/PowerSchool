@@ -320,55 +320,55 @@ export default function FAQPage() {
                         title: 'Getting Started with EduSync',
                         description:
                             'A complete walkthrough of initial setup — adding your school, importing students, and configuring your first academic year.',
-                        thumbnailUrl: '/placeholder.svg',
+                        thumbnailUrl: 'https://i.ibb.co.com/TqJgTQsK/8o-Eepun-Mjt-U-HD.jpg',
                         duration: '8:42',
                         category: 'Onboarding',
-                        href: '#',
+                        href: 'https://www.youtube.com/watch?v=8oEepunMjtU',
                     },
                     {
                         title: 'Marking Attendance in Under 60 Seconds',
                         description:
                             'Learn how teachers can mark class attendance using the mobile app with QR codes or the web dashboard in just a few taps.',
-                        thumbnailUrl: '/placeholder.svg',
+                        thumbnailUrl: 'https://i.ibb.co.com/VcK7Y3QH/va-SL9782-Jo-U-HD.jpg',
                         duration: '3:15',
                         category: 'Attendance',
-                        href: '#',
+                        href: 'https://www.youtube.com/watch?v=vaSL9782JoU&list=PLD4yJgnADM0pHZu1PMb8EljbcqWMchfA5',
                     },
                     {
                         title: 'Setting Up Online Fee Collection',
                         description:
                             'Configure payment gateways, create fee structures, assign fees to classes, and enable parent self-service payments.',
-                        thumbnailUrl: '/placeholder.svg',
+                        thumbnailUrl: 'https://i.ibb.co.com/tMKkLnFg/Features-and-Benefits-School-Fee-Management-Software-System.jpg',
                         duration: '6:30',
                         category: 'Fees',
-                        href: '#',
+                        href: 'https://www.youtube.com/watch?v=jNLJ4r8Cwpg',
                     },
                     {
                         title: 'Generating & Publishing Report Cards',
                         description:
                             'Enter exam marks, configure grading scales, and generate branded report cards that parents can view instantly.',
-                        thumbnailUrl: '/placeholder.svg',
+                        thumbnailUrl: 'https://i.ibb.co.com/Q3sCjqfw/j-Afi-Glm-Lxso-HD.jpg',
                         duration: '5:48',
                         category: 'Results',
-                        href: '#',
+                        href: 'https://www.youtube.com/watch?v=jAfiGlmLxso&list=PLDLLuBZ1-Ett1_-2vax4_nMqVnn7mTtv7',
                     },
                     {
                         title: 'Managing Roles & Permissions',
                         description:
                             'Create custom roles for teachers, department heads, and clerks with fine-grained data access control.',
-                        thumbnailUrl: '/placeholder.svg',
+                        thumbnailUrl: 'https://i.ibb.co.com/PGzxdzxz/Role-of-School-Management-System.jpg',
                         duration: '4:22',
                         category: 'Admin',
-                        href: '#',
+                        href: 'https://www.youtube.com/watch?v=10An8tiwh6w',
                     },
                     {
                         title: 'Parent Portal Overview',
                         description:
                             'See how parents use the EduSync app to track attendance, view results, pay fees, and communicate with teachers.',
-                        thumbnailUrl: '/placeholder.svg',
+                        thumbnailUrl: 'https://i.ibb.co.com/spFWpLTL/KSURo-J9-IVZY-HD.jpg',
                         duration: '5:10',
                         category: 'Parents',
-                        href: '#',
+                        href: 'https://www.youtube.com/watch?v=KSURoJ9IVZY',
                     },
                 ]}
             />

@@ -22,11 +22,16 @@ const LogosGrid = ({ partners }: { partners: IPartner[] }) => (
 );
 
 const PartnerLogo = ({ name, logo }: IPartner) => (
-    <div className="flex items-center justify-center p-6 rounded-xl border bg-background hover:shadow-sm transition-shadow">
-        <div className="h-10 w-full relative grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all">
-            <Image src={logo} alt={name} fill className="object-contain" sizes="(max-width: 640px) 50vw, 160px" />
-        </div>
+  <div className="flex items-center justify-center p-5 rounded-xl border bg-background hover:shadow-sm transition-shadow">
+    <div className="h-15 w-full relative grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all">
+      <Image
+        src={logo}
+        alt={name}
+        fill
+        className="rounded-md"
+      />
     </div>
+  </div>
 );
 
 // ============= TYPES =============

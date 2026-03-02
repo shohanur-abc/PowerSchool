@@ -17,7 +17,7 @@ const TestimonialCard = ({ quote, author, role, school, avatar, logo }: ITestimo
         <CardContent className="p-8 @lg:p-12 space-y-8">
             <QuoteIcon />
             <QuoteText text={quote} />
-            <AuthorInfo author={author} role={role} school={school} avatar={avatar} logo={logo} />
+            <AuthorInfo author={author} role={role} school={school} avatar={avatar} />
         </CardContent>
     </Card>
 );

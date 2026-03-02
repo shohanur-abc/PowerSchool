@@ -17,7 +17,7 @@ export default function Partners({ eyebrow, title, subtitle, partners }: IPartne
 const PartnersGrid = ({ partners }: { partners: IPartners['partners'] }) => (
     <div className="flex flex-wrap justify-center items-center gap-10 @lg:gap-16">
         {partners.map(({ name, logo, href }, i) => (
-            <Link key={i} href={href} className="grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+            <Link key={i} href={href} className=" opacity-90 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
                 <Image src={logo} alt={name} width={140} height={50} className="h-10 @sm:h-12 w-auto" />
             </Link>
         ))}

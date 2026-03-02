@@ -14,7 +14,7 @@ export default function Stats({ eyebrow, title, subtitle, stats }: IStats) {
 
 // ============= CHILD COMPONENTS =============
 const StatsGrid = ({ stats }: { stats: IStats['stats'] }) => (
-    <div className="grid grid-cols-2 @lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 @lg:grid-cols-2 @2xl:grid-cols-3 @4xl:grid-cols-4 gap-6">
         {stats.map((stat, i) => (
             <StatCard key={i} {...stat} />
         ))}

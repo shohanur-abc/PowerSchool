@@ -17,7 +17,7 @@ export default function IntegrationGrid({ eyebrow, title, subtitle, integrations
 
 // ============= CHILD COMPONENTS =============
 const Grid = ({ integrations }: { integrations: IIntegrationItem[] }) => (
-    <div className="grid grid-cols-1 @sm:grid-cols-2 @xl:grid-cols-3 @4xl:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 @xl:grid-cols-2 @5xl:grid-cols-4 gap-6">
         {integrations.map((integration, i) => (
             <IntegrationCard key={i} {...integration} />
         ))}
@@ -43,8 +43,8 @@ const IntegrationCard = ({ logo, name, category, description, connectLabel }: II
 );
 
 const LogoBox = ({ logo, name }: { logo: string; name: string }) => (
-    <div className="size-12 rounded-lg border bg-muted/50 flex items-center justify-center shrink-0 overflow-hidden relative">
-        <Image src={logo} alt={name} fill className="object-contain p-2" sizes="48px" />
+    <div className="size-14 rounded-lg border bg-muted/50 flex items-center justify-center shrink-0 overflow-hidden relative">
+        <Image src={logo} alt={name} fill className="object-contain rounded-full p-2" sizes="48px" />
     </div>
 );
 

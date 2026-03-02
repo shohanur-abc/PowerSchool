@@ -1,5 +1,4 @@
-import Image from 'next/image';
-import Link from 'next/link';
+
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Heading from '@/components/heading';
@@ -16,23 +15,15 @@ export default function Team({ eyebrow, title, subtitle, members }: ITeam) {
 }
 
 // ============= CHILD COMPONENTS =============
-const TeamGrid = ({ members }: {
-    members: {
-        name: string;
-        role: string;
-        avatar: string;
-        bio: string;
-        socials?: { platform: string; href: string }[];
-    }[];
-}) => (
-    <div className="grid grid-cols-1 @sm:grid-cols-2 @lg:grid-cols-3 @3xl:grid-cols-4 gap-6">
+const TeamGrid = ({ members }: { members: ITeam['members'] }) => (
+    <div className="grid grid-cols-1 @sm:grid-cols-1 @lg:grid-cols-2 @3xl:grid-cols-3 @6xl:grid-cols-4 gap-6">
         {members.map((member, i) => (
             <MemberCard key={i} {...member} />
         ))}
     </div>
 );
 
-const MemberCard = ({ name, role, avatar, bio, socials }: ITeam['members'][number]) => (
+const MemberCard = ({ name, role, avatar, bio }: ITeam['members'][number]) => (
     <Card className="group text-center hover:shadow-lg transition-shadow">
         <CardContent className="pt-8 space-y-4">
             <Avatar className="size-24 mx-auto ring-4 ring-background">

@@ -38,7 +38,7 @@ const Actions = ({ primary, secondary }: { primary: ICTA['primaryCta']; secondar
             </Link>
         </Button>
         {secondary && (
-            <Button size="lg" variant="outline" className="rounded-full px-8 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10" asChild>
+            <Button size="lg" variant="outline" className="rounded-full px-8 border-primary-foreground/30 text-secondary hover:text-secondary hover:bg-destructive/10" asChild>
                 <Link href={secondary.href}>{secondary.text}</Link>
             </Button>
         )}

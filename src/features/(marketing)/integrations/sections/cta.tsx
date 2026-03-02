@@ -29,20 +29,35 @@ const Description = ({ text }: { text: string }) => (
     </p>
 );
 
-const Actions = ({ primary, secondary }: { primary: ICTAAction; secondary?: ICTAAction }) => (
-    <div className="flex flex-col @sm:flex-row items-center justify-center gap-4 pt-2">
-        <Button size="lg" variant="secondary" className="rounded-full px-8" asChild>
-            <Link href={primary.href}>
-                {primary.text}
-                <ArrowRight className="ml-2 size-4" />
-            </Link>
-        </Button>
-        {secondary && (
-            <Button size="lg" variant="outline" className="rounded-full px-8 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10" asChild>
-                <Link href={secondary.href}>{secondary.text}</Link>
-            </Button>
-        )}
-    </div>
+const Actions = ({
+  primary,
+  secondary,
+}: {
+  primary: ICTAAction;
+  secondary?: ICTAAction;
+}) => (
+  <div className="flex flex-col @sm:flex-row items-center justify-center gap-4 pt-2">
+    <Button size="lg" variant="secondary" className="rounded-full px-8" asChild>
+      <Link href={primary.href}>
+        {primary.text}
+        <ArrowRight className="ml-2 size-4" />
+      </Link>
+    </Button>
+    {secondary && (
+      <Button
+        size="lg"
+        className="rounded-full shadow-lg px-8 
+             border-primary-foreground/30 
+             text-primary-foreground 
+             hover:text-white 
+             hover:bg-black/20 
+             transition-all duration-300"
+        asChild
+      >
+        <Link href={secondary.href}>{secondary.text}</Link>
+      </Button>
+    )}
+  </div>
 );
 
 // ============= TYPES =============

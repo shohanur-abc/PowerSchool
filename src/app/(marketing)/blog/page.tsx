@@ -69,7 +69,7 @@ export default function Page() {
                     title: 'How AI-Powered Attendance Systems Are Reducing Truancy by 40% in K-12 Schools',
                     excerpt:
                         'Discover how schools across the country are leveraging facial recognition and RFID-based attendance tracking to identify at-risk students early, automate parent notifications, and dramatically improve daily attendance rates — all while saving administrators hours of manual work each week.',
-                    image: '/placeholder.svg',
+                    image: 'https://decibel360cloud.com/ae/wp-content/uploads/2025/02/ezgif.com-gif-maker-6.webp',
                     href: `${ROUTES.marketing.blog}/ai-attendance-reducing-truancy`,
                     category: 'Attendance & Safety',
                     date: 'Feb 10, 2026',
@@ -109,7 +109,7 @@ export default function Page() {
                         title: '5 Strategies to Streamline Fee Collection and Reduce Defaults by 60%',
                         excerpt:
                             'Learn how top-performing schools are using automated invoicing, digital payment gateways, and smart reminders to eliminate fee collection headaches.',
-                        image: '/placeholder.svg',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMjbDetvzmQoHDLKS0qZuFbOO4hphBLa1y5Q&s',
                         href: `${ROUTES.marketing.blog}/streamline-fee-collection`,
                         category: 'Fee Management',
                         date: 'Feb 8, 2026',
@@ -120,7 +120,7 @@ export default function Page() {
                         title: 'Building a Data-Driven Culture: How Principals Use Dashboards to Boost Student Outcomes',
                         excerpt:
                             'Real-world examples of school leaders who turned raw data into actionable insights — improving exam results, attendance, and teacher performance.',
-                        image: '/placeholder.svg',
+                        image: 'https://appinventiv.com/wp-content/uploads/2022/06/benefits-to-having-a-data-driven-culture-scaled.webp',
                         href: `${ROUTES.marketing.blog}/data-driven-school-culture`,
                         category: 'Analytics & Reports',
                         date: 'Feb 5, 2026',
@@ -131,7 +131,7 @@ export default function Page() {
                         title: 'The Complete Guide to Digital Report Cards: From Setup to Parent Delivery',
                         excerpt:
                             'Step-by-step walkthrough for transitioning from paper-based report cards to a fully digital grading and distribution system.',
-                        image: '/placeholder.svg',
+                        image: 'https://coronadotimes.com/wp-content/uploads/2024/04/A-report-card-Excellence-green.jpg',
                         href: `${ROUTES.marketing.blog}/digital-report-cards-guide`,
                         category: 'Classroom Tech',
                         date: 'Feb 2, 2026',
@@ -142,7 +142,7 @@ export default function Page() {
                         title: 'Why 500+ Schools Switched to Automated Timetable Generation This Year',
                         excerpt:
                             'Manual timetabling costs schools an average of 120 hours per term. Here\'s how intelligent scheduling algorithms are giving that time back.',
-                        image: '/placeholder.svg',
+                        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSimBhMmZWyoCS8J6lh2x0rqZP73RmnPLiPpQ&s',
                         href: `${ROUTES.marketing.blog}/automated-timetable-generation`,
                         category: 'Best Practices',
                         date: 'Jan 29, 2026',
@@ -153,7 +153,7 @@ export default function Page() {
                         title: 'FERPA, COPPA & Beyond: A School Admin\'s Guide to Student Data Privacy in 2026',
                         excerpt:
                             'Navigate the complex regulatory landscape of student data protection with this practical compliance checklist and vendor evaluation framework.',
-                        image: '/placeholder.svg',
+                        image: 'https://framerusercontent.com/images/6IN8y0vjF6g1QOqCmlATuRxHQ.jpg?width=4096&height=2304',
                         href: `${ROUTES.marketing.blog}/student-data-privacy-guide`,
                         category: 'Security & Privacy',
                         date: 'Jan 25, 2026',
@@ -164,7 +164,7 @@ export default function Page() {
                         title: 'How to Launch a Successful Parent Communication Portal in Under 2 Weeks',
                         excerpt:
                             'A practical implementation roadmap for schools looking to centralize parent-teacher communication, from announcement boards to real-time chat.',
-                        image: '/placeholder.svg',
+                        image: 'https://www.growthengineering.co.uk/wp-content/uploads/2024/10/Evo-of-Learning-Tech-ills_Hero.png',
                         href: `${ROUTES.marketing.blog}/parent-communication-portal`,
                         category: 'Parent Engagement',
                         date: 'Jan 21, 2026',
@@ -391,7 +391,7 @@ export default function Page() {
                 title="Never Miss an Insight"
                 description="Join 12,000+ school administrators, teachers, and education leaders who receive our weekly digest of the best school management strategies, EdTech news, and practical tips."
                 inputPlaceholder="Enter your school email address"
-                buttonText="Subscribe to Newsletter"
+                buttonText="Subscribe"
                 benefits={[
                     'Weekly curated articles on school management & EdTech',
                     'Exclusive downloadable templates and checklists',

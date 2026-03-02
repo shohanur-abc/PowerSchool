@@ -1,48 +1,22 @@
-"use client";
-import { cn } from '@/lib/utils';
-import { cva } from 'class-variance-authority';
+import { cn } from "@/lib/utils"
 
-export const PageHeader = ({ title, description, breadcrumb, actions, eyebrow, variant = 'default', className, classNames: cns }: PageHeaderProps) => (
-    <div className={cn(headerVariant({ variant }), "@container", className)}>
-        {breadcrumb && <div className={cn("mb-2", cns?.breadcrumb)}>{breadcrumb}</div>}
-        <div className="flex flex-col @md:flex-row @md:items-center justify-between gap-4">
+// ============= COMPONENT =============
+export function PageHeader({ title, description, children, className }: PageHeaderProps) {
+    return (
+        <div className={cn("flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between", className)}>
             <div>
-                {eyebrow && <p className={cn("text-sm text-primary font-medium mb-1", cns?.eyebrow)}>{eyebrow}</p>}
-                <h1 className={cn("text-2xl @md:text-3xl font-bold tracking-tight", cns?.title)}>{title}</h1>
-                {description && <p className={cn("text-muted-foreground mt-1", cns?.description)}>{description}</p>}
+                <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
+                {description && <p className="text-muted-foreground text-sm">{description}</p>}
             </div>
-            {actions && <div className={cn("flex items-center gap-2 shrink-0", cns?.actions)}>{actions}</div>}
+            {children && <div className="flex items-center gap-2 mt-2 sm:mt-0">{children}</div>}
         </div>
-    </div>
-);
-
-
-// ============= VARIANTS =============
-const headerVariant = cva("", {
-    variants: {
-        variant: {
-            default: "pb-6 border-b mb-6",
-            clean: "pb-6",
-            compact: "pb-4",
-        },
-    },
-});
-
+    )
+}
 
 // ============= TYPES =============
 interface PageHeaderProps {
-    title: string;
-    description?: string;
-    breadcrumb?: React.ReactNode;
-    actions?: React.ReactNode;
-    eyebrow?: string;
-    variant?: 'default' | 'clean' | 'compact';
-    className?: string;
-    classNames?: {
-        breadcrumb?: string;
-        eyebrow?: string;
-        title?: string;
-        description?: string;
-        actions?: string;
-    };
+    title: string
+    description?: string
+    children?: React.ReactNode
+    className?: string
 }

@@ -47,10 +47,10 @@ export const FormInput = ({ name = "", label, description, placeholder, type = '
 
 export const Email = (props: React.ComponentProps<typeof FormInput>) => (
     <FormInput
-        {...props}
         type="email"
         placeholder="Enter your email"
         leftAddon={<MailIcon className="text-muted-foreground" />}
+        {...props}
     />
 );
 
@@ -65,6 +65,7 @@ export const Password = ({ name, label = "Password", ...props }: React.Component
             leftAddon={<LockIcon className="text-muted-foreground" />}
             rightAddon={
                 <Button
+                    type='button'
                     onClick={() => setShowPassword((prev) => !prev)}
                     className="text-muted-foreground"
                     variant="ghost"
@@ -82,7 +83,7 @@ export const Password = ({ name, label = "Password", ...props }: React.Component
 
 // ============= Types =============
 interface FormInputProps extends React.ComponentProps<typeof InputGroupInput> {
-    name?: string;
+    name: string;
     label: string;
     type?: string;
     placeholder?: string;

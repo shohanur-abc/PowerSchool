@@ -6,9 +6,9 @@ import Heading from '@/components/heading';
 export default function Mission({ eyebrow, title, subtitle, content, image }: IMission) {
     return (
         <Section containerClass="bg-muted/50">
-            <div className="grid grid-cols-1 @3xl:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 @4xl:grid-cols-2 gap-12 items-center">
                 <ContentBlock eyebrow={eyebrow} title={title} subtitle={subtitle} content={content} />
-                <ImageBlock src={image.src} alt={image.alt} />
+                <ImageBlock src={`https://i.ibb.co.com/pv99cVDt/city-committed-education-collage-concept.jpg`} alt={image.alt} />
             </div>
         </Section>
     );
