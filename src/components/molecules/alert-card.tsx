@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 import { Card, CardContent } from '@/components/ui/card';
 import { cva } from 'class-variance-authority';

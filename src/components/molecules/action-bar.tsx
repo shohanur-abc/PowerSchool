@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const ActionBar = ({ children, align = 'right', sticky, className, classNames: cns }: ActionBarProps) => (

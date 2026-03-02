@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const SplitView = ({ left, right, ratio = '1:1', reverse, className, classNames: cns }: SplitViewProps) => {

@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const GridContainer = ({ children, cols = 3, gap = 4, className, classNames: cns }: GridContainerProps) => (

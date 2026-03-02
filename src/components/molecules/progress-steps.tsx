@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 import { CheckIcon } from 'lucide-react';
 import { cva } from 'class-variance-authority';

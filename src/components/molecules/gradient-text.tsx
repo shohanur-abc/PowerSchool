@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const GradientText = ({ children, from = 'from-primary', to = 'to-primary/50', via, as: Tag = 'span', className }: GradientTextProps) => (

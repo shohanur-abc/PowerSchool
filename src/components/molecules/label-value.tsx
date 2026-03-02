@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const LabelValue = ({ label, value, size = 'default', direction = 'vertical', colon, className, classNames: cns }: LabelValueProps) => (

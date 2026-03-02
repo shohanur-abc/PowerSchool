@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const Placeholder = ({ label, height = 200, dashed = true, icon: Icon, className, classNames: cns }: PlaceholderProps) => (

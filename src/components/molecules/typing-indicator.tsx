@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const TypingIndicator = ({ label, className, classNames: cns }: TypingIndicatorProps) => (

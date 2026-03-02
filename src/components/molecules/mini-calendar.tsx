@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const MiniCalendar = ({ month, year, events = [], className, classNames: cns }: MiniCalendarProps) => {

@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const CircularProgress = ({ segments, size = 100, strokeWidth = 8, showLabel, className, classNames: cns }: CircularProgressProps) => {

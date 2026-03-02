@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const Center = ({ children, minHeight, className }: CenterProps) => (

@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const CharacterCount = ({ current, max, threshold = 0.9, className, classNames: cns }: CharacterCountProps) => {

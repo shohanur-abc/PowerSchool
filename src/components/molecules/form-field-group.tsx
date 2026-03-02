@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const FormFieldGroup = ({ title, description, children, columns = 1, className, classNames: cns }: FormFieldGroupProps) => (

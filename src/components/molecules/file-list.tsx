@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 import { FileIcon, FileTextIcon, ImageIcon, VideoIcon, MusicIcon, ArchiveIcon } from 'lucide-react';
 

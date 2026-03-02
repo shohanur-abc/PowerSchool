@@ -1,3 +1,4 @@
+"use client";
 import { Section } from '@/components/molecules/section';
 import { Card, CardContent } from '@/components/ui/card';
 

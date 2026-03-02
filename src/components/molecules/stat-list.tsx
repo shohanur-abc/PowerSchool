@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const StatList = ({ stats, variant = 'default', className, classNames: cns }: StatListProps) => (

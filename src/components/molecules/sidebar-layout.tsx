@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const SidebarLayout = ({ sidebar, children, sidebarWidth = 'default', className, classNames: cns }: SidebarLayoutProps) => (

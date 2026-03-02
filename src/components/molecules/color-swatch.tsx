@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const ColorSwatch = ({ colors, size = 'default', showLabel, className, classNames: cns }: ColorSwatchProps) => (

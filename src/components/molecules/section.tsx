@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { Playground } from "./playground";
 import { ReactNode } from "react";

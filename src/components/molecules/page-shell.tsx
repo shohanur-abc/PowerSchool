@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const PageShell = ({ header, children, footer, maxWidth = '7xl', className, classNames: cns }: PageShellProps) => {

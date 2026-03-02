@@ -1,3 +1,4 @@
+"use client";
 import { Bell, CalendarCheck, CheckCircle, CheckCircle2, CreditCard, FileBarChart, Lock, MessageSquare } from "lucide-react";
 import { Section as Comp } from "@/components/molecules/section";
 import { List } from "@/components/molecules/list";

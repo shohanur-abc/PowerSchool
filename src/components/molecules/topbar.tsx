@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const Topbar = ({ left, center, right, className, classNames: cns }: TopbarProps) => (

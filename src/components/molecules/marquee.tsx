@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const Marquee = ({ children, speed = 30, reverse, pauseOnHover, className, classNames: cns }: MarqueeProps) => (

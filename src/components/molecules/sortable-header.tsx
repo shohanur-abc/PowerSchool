@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 import { ArrowUpIcon, ArrowDownIcon, ArrowUpDownIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';

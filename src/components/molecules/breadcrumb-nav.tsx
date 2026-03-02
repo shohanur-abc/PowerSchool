@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 

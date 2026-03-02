@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 import { AlertCircleIcon, CheckCircleIcon, InfoIcon, AlertTriangleIcon } from 'lucide-react';

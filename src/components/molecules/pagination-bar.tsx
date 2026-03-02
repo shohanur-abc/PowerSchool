@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 

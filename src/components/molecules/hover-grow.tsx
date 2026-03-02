@@ -1,3 +1,4 @@
+"use client";
 import { cn } from '@/lib/utils';
 
 export const HoverGrow = ({ children, scale = 1.03, className }: HoverGrowProps) => (
