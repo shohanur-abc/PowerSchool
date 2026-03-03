@@ -62,4 +62,27 @@ export class Class {
             section: c.section,
         }))
     }
+
+    static capacityUtilization = cache(async () => {
+        await connectDB()
+        const raw = await ClassModel.capacityUtilization()
+        return raw.map((r) => ({
+            className: `${r.name} ${r.section}`,
+            grade: r.grade as number,
+            studentCount: r.studentCount as number,
+            maxStudents: r.maxStudents as number,
+            utilization: r.utilization as number,
+        }))
+    })
+
+    static gradeDistribution = cache(async () => {
+        await connectDB()
+        const raw = await ClassModel.gradeDistribution()
+        return raw.map((r) => ({
+            grade: r._id as number,
+            sections: r.sections as number,
+            totalStudents: r.totalStudents as number,
+            totalCapacity: r.totalCapacity as number,
+        }))
+    })
 }

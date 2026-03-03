@@ -67,6 +67,38 @@ const classSchema = new Schema(
             countActive() {
                 return this.countDocuments({ status: "active" })
             },
+            capacityUtilization() {
+                return this.aggregate([
+                    { $match: { status: "active" } },
+                    {
+                        $project: {
+                            name: 1,
+                            section: 1,
+                            grade: 1,
+                            studentCount: 1,
+                            maxStudents: 1,
+                            utilization: {
+                                $round: [{ $multiply: [{ $divide: ["$studentCount", "$maxStudents"] }, 100] }, 1],
+                            },
+                        }
+                    },
+                    { $sort: { grade: 1, section: 1 } },
+                ])
+            },
+            gradeDistribution() {
+                return this.aggregate([
+                    { $match: { status: "active" } },
+                    {
+                        $group: {
+                            _id: "$grade",
+                            sections: { $sum: 1 },
+                            totalStudents: { $sum: "$studentCount" },
+                            totalCapacity: { $sum: "$maxStudents" },
+                        }
+                    },
+                    { $sort: { _id: 1 } },
+                ])
+            },
         },
     }
 )

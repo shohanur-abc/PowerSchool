@@ -103,4 +103,48 @@ export class Fee {
 
         return { statusBreakdown, recentPayments, overdueList }
     }
+
+    static monthlyCollection = cache(async (academicYear: string = "2025-2026") => {
+        await connectDB()
+        const raw = await FeeModel.monthlyCollection(academicYear)
+        return raw.map((r) => ({
+            month: r._id as string,
+            total: r.total as number,
+            count: r.count as number,
+        }))
+    })
+
+    static paymentMethodBreakdown = cache(async (academicYear: string = "2025-2026") => {
+        await connectDB()
+        const raw = await FeeModel.paymentMethodBreakdown(academicYear)
+        return raw.map((r) => ({
+            method: r._id as string,
+            total: r.total as number,
+            count: r.count as number,
+        }))
+    })
+
+    static topDefaulters = cache(async (academicYear: string = "2025-2026", limit: number = 10) => {
+        await connectDB()
+        const raw = await FeeModel.topDefaulters(academicYear, limit)
+        return raw.map((r) => ({
+            studentName: r.studentName as string,
+            rollNumber: r.rollNumber as string,
+            totalDue: r.totalDue as number,
+            count: r.count as number,
+        }))
+    })
+
+    static classWiseFees = cache(async (academicYear: string = "2025-2026") => {
+        await connectDB()
+        const raw = await FeeModel.classWiseFees(academicYear)
+        return raw.map((r) => ({
+            className: r.className as string,
+            totalFees: r.totalFees as number,
+            collected: r.collected as number,
+            pending: r.pending as number,
+            studentCount: r.studentCount as number,
+            collectionRate: r.totalFees > 0 ? Math.round((r.collected / r.totalFees) * 100 * 10) / 10 : 0,
+        }))
+    })
 }

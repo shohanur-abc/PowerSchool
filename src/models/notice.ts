@@ -66,6 +66,46 @@ const noticeSchema = new Schema(
                     .sort({ publishDate: -1 })
                     .limit(limit)
             },
+            priorityBreakdown() {
+                return this.aggregate([
+                    { $group: { _id: "$priority", count: { $sum: 1 } } },
+                    { $sort: { count: -1 } },
+                ])
+            },
+            audienceReach() {
+                return this.aggregate([
+                    { $unwind: "$targetAudience" },
+                    { $group: { _id: "$targetAudience", count: { $sum: 1 } } },
+                    { $sort: { count: -1 } },
+                ])
+            },
+            publishTrend(months: number = 6) {
+                const startDate = new Date()
+                startDate.setMonth(startDate.getMonth() - months)
+                return this.aggregate([
+                    { $match: { publishDate: { $gte: startDate } } },
+                    {
+                        $group: {
+                            _id: {
+                                month: { $month: "$publishDate" },
+                                year: { $year: "$publishDate" },
+                            },
+                            count: { $sum: 1 },
+                            published: { $sum: { $cond: [{ $eq: ["$status", "published"] }, 1, 0] } },
+                        }
+                    },
+                    { $sort: { "_id.year": 1, "_id.month": 1 } },
+                ])
+            },
+            getExpiringSoon(days: number = 7) {
+                const now = new Date()
+                const soon = new Date()
+                soon.setDate(soon.getDate() + days)
+                return this.find({
+                    status: "published",
+                    expiryDate: { $gte: now, $lte: soon },
+                }).populate("author", "name").sort({ expiryDate: 1 })
+            },
         },
     }
 )

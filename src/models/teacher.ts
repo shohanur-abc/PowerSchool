@@ -60,6 +60,30 @@ const teacherSchema = new Schema(
             countActive() {
                 return this.countDocuments({ status: "active" })
             },
+            departmentDistribution() {
+                return this.aggregate([
+                    { $group: { _id: "$department", count: { $sum: 1 } } },
+                    { $sort: { count: -1 } },
+                ])
+            },
+            subjectCoverage() {
+                return this.aggregate([
+                    {
+                        $group: {
+                            _id: "$subject",
+                            count: { $sum: 1 },
+                            activeCount: { $sum: { $cond: [{ $eq: ["$status", "active"] }, 1, 0] } },
+                        }
+                    },
+                    { $sort: { _id: 1 } },
+                ])
+            },
+            statusBreakdown() {
+                return this.aggregate([
+                    { $group: { _id: "$status", count: { $sum: 1 } } },
+                    { $sort: { count: -1 } },
+                ])
+            },
         },
     }
 )

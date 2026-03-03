@@ -56,4 +56,45 @@ export class Notice {
 
         return { notices, statusCounts }
     }
+
+    static priorityBreakdown = cache(async () => {
+        await connectDB()
+        const raw = await NoticeModel.priorityBreakdown()
+        return raw.map((r) => ({
+            priority: r._id as string,
+            count: r.count as number,
+        }))
+    })
+
+    static audienceReach = cache(async () => {
+        await connectDB()
+        const raw = await NoticeModel.audienceReach()
+        return raw.map((r) => ({
+            audience: r._id as string,
+            count: r.count as number,
+        }))
+    })
+
+    static publishTrend = cache(async (months: number = 6) => {
+        await connectDB()
+        const MONTH_NAMES = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        const raw = await NoticeModel.publishTrend(months)
+        return raw.map((r) => ({
+            month: `${MONTH_NAMES[r._id.month as number]} ${r._id.year}`,
+            count: r.count as number,
+            published: r.published as number,
+        }))
+    })
+
+    static async getExpiringSoon(days: number = 7) {
+        await connectDB()
+        const notices = await NoticeModel.getExpiringSoon(days)
+        return notices.map((n) => ({
+            _id: String(n._id),
+            title: n.title,
+            authorName: pop(n.author, "name") || "Unknown",
+            priority: n.priority,
+            expiryDate: fmtDate(n.expiryDate),
+        }))
+    }
 }

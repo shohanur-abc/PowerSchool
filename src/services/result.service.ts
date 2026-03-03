@@ -123,4 +123,56 @@ export class Result {
             })),
         }
     })
+
+    static classPerformance = cache(async () => {
+        await connectDB()
+        const raw = await ResultModel.classPerformance()
+        return raw.map((r) => ({
+            className: r.className as string,
+            avgMarks: r.avgMarks as number,
+            maxMarks: r.maxMarks as number,
+            minMarks: r.minMarks as number,
+            studentCount: r.studentCount as number,
+            passRate: r.passRate as number,
+        }))
+    })
+
+    static examComparison = cache(async () => {
+        await connectDB()
+        const raw = await ResultModel.examComparison()
+        return raw.map((r) => ({
+            exam: r.exam as string,
+            avgMarks: r.avgMarks as number,
+            maxMarks: r.maxMarks as number,
+            minMarks: r.minMarks as number,
+            studentCount: r.studentCount as number,
+            passRate: r.passRate as number,
+        }))
+    })
+
+    static topPerformers = cache(async (limit: number = 10) => {
+        await connectDB()
+        const raw = await ResultModel.topPerformers(limit)
+        return raw.map((r) => ({
+            studentName: r.studentName as string,
+            rollNumber: r.rollNumber as string,
+            className: r.className as string,
+            avgMarks: r.avgMarks as number,
+            totalExams: r.totalExams as number,
+        }))
+    })
+
+    static subjectWisePerformance = cache(async () => {
+        await connectDB()
+        const raw = await ResultModel.subjectWisePerformance()
+        return raw.map((r) => ({
+            subject: r.subject as string,
+            avgMarks: r.avgMarks as number,
+            maxMarks: r.maxMarks as number,
+            minMarks: r.minMarks as number,
+            passRate: r.passRate as number,
+            failCount: r.failCount as number,
+            total: r.total as number,
+        }))
+    })
 }

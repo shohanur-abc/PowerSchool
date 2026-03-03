@@ -77,6 +77,97 @@ const attendanceSchema = new Schema(
                     { $limit: limit },
                 ])
             },
+            weeklyTrend(weeks: number = 8) {
+                const startDate = new Date()
+                startDate.setDate(startDate.getDate() - weeks * 7)
+                return this.aggregate([
+                    { $match: { date: { $gte: startDate } } },
+                    {
+                        $group: {
+                            _id: {
+                                week: { $isoWeek: "$date" },
+                                year: { $isoWeekYear: "$date" },
+                                status: "$status",
+                            },
+                            count: { $sum: 1 },
+                        }
+                    },
+                    { $sort: { "_id.year": 1, "_id.week": 1 } },
+                ])
+            },
+            classWiseStats() {
+                return this.aggregate([
+                    { $lookup: { from: "classes", localField: "classId", foreignField: "_id", as: "class" } },
+                    { $unwind: "$class" },
+                    {
+                        $group: {
+                            _id: { classId: "$classId", className: "$class.name", section: "$class.section" },
+                            total: { $sum: 1 },
+                            present: { $sum: { $cond: [{ $eq: ["$status", "present"] }, 1, 0] } },
+                            absent: { $sum: { $cond: [{ $eq: ["$status", "absent"] }, 1, 0] } },
+                            late: { $sum: { $cond: [{ $eq: ["$status", "late"] }, 1, 0] } },
+                            excused: { $sum: { $cond: [{ $eq: ["$status", "excused"] }, 1, 0] } },
+                        }
+                    },
+                    { $sort: { "_id.className": 1, "_id.section": 1 } },
+                ])
+            },
+            topAbsentees(limit: number = 10) {
+                return this.aggregate([
+                    { $match: { status: { $in: ["absent", "late"] } } },
+                    { $group: { _id: "$student", absences: { $sum: 1 } } },
+                    { $sort: { absences: -1 } },
+                    { $limit: limit },
+                    { $lookup: { from: "students", localField: "_id", foreignField: "_id", as: "student" } },
+                    { $unwind: "$student" },
+                    { $lookup: { from: "classes", localField: "student.classId", foreignField: "_id", as: "class" } },
+                    { $unwind: { path: "$class", preserveNullAndEmptyArrays: true } },
+                    {
+                        $project: {
+                            studentName: "$student.name",
+                            rollNumber: "$student.rollNumber",
+                            className: { $concat: ["$class.name", " ", "$class.section"] },
+                            absences: 1,
+                        }
+                    },
+                ])
+            },
+            monthlySummary(months: number = 6) {
+                const startDate = new Date()
+                startDate.setMonth(startDate.getMonth() - months)
+                return this.aggregate([
+                    { $match: { date: { $gte: startDate } } },
+                    {
+                        $group: {
+                            _id: {
+                                month: { $month: "$date" },
+                                year: { $year: "$date" },
+                                status: "$status",
+                            },
+                            count: { $sum: 1 },
+                        }
+                    },
+                    { $sort: { "_id.year": 1, "_id.month": 1 } },
+                ])
+            },
+            attendanceRate() {
+                return this.aggregate([
+                    {
+                        $group: {
+                            _id: null,
+                            total: { $sum: 1 },
+                            present: { $sum: { $cond: [{ $eq: ["$status", "present"] }, 1, 0] } },
+                        }
+                    },
+                    {
+                        $project: {
+                            rate: { $multiply: [{ $divide: ["$present", "$total"] }, 100] },
+                            total: 1,
+                            present: 1,
+                        }
+                    },
+                ])
+            },
         },
         query: {
             // Add any custom query helpers here if needed in the future

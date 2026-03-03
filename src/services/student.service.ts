@@ -74,4 +74,44 @@ export class Student {
             section: s.section,
         }))
     }
+
+    static genderDistribution = cache(async () => {
+        await connectDB()
+        const raw = await StudentModel.genderDistribution()
+        return raw.map((r) => ({
+            gender: (r._id as string) || "unspecified",
+            count: r.count as number,
+        }))
+    })
+
+    static classWiseCounts = cache(async () => {
+        await connectDB()
+        const raw = await StudentModel.classWiseCounts()
+        return raw.map((r) => ({
+            className: `${r._id.className} ${r._id.section}`,
+            grade: r._id.grade as number,
+            count: r.count as number,
+            maleCount: r.maleCount as number,
+            femaleCount: r.femaleCount as number,
+        }))
+    })
+
+    static admissionTrend = cache(async (months: number = 12) => {
+        await connectDB()
+        const MONTH_NAMES = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        const raw = await StudentModel.admissionTrend(months)
+        return raw.map((r) => ({
+            month: `${MONTH_NAMES[r._id.month as number]} ${r._id.year}`,
+            count: r.count as number,
+        }))
+    })
+
+    static statusBreakdown = cache(async () => {
+        await connectDB()
+        const raw = await StudentModel.statusBreakdown()
+        return raw.map((r) => ({
+            status: r._id as string,
+            count: r.count as number,
+        }))
+    })
 }

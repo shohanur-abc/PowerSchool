@@ -74,6 +74,113 @@ const resultSchema = new Schema(
                     .populate("classId", "name section")
                     .sort({ createdAt: -1 })
             },
+            classPerformance() {
+                return this.aggregate([
+                    { $lookup: { from: "classes", localField: "classId", foreignField: "_id", as: "class" } },
+                    { $unwind: "$class" },
+                    {
+                        $group: {
+                            _id: { classId: "$classId", className: "$class.name", section: "$class.section" },
+                            avgMarks: { $avg: "$marks" },
+                            maxMarks: { $max: "$marks" },
+                            minMarks: { $min: "$marks" },
+                            totalStudents: { $addToSet: "$student" },
+                            passCount: { $sum: { $cond: [{ $gte: ["$marks", 40] }, 1, 0] } },
+                            totalResults: { $sum: 1 },
+                        }
+                    },
+                    {
+                        $project: {
+                            className: { $concat: ["$_id.className", " ", "$_id.section"] },
+                            avgMarks: { $round: ["$avgMarks", 1] },
+                            maxMarks: 1,
+                            minMarks: 1,
+                            studentCount: { $size: "$totalStudents" },
+                            passRate: { $round: [{ $multiply: [{ $divide: ["$passCount", "$totalResults"] }, 100] }, 1] },
+                        }
+                    },
+                    { $sort: { "_id.className": 1 } },
+                ])
+            },
+            examComparison() {
+                return this.aggregate([
+                    {
+                        $group: {
+                            _id: "$exam",
+                            avgMarks: { $avg: "$marks" },
+                            maxMarks: { $max: "$marks" },
+                            minMarks: { $min: "$marks" },
+                            totalStudents: { $addToSet: "$student" },
+                            passCount: { $sum: { $cond: [{ $gte: ["$marks", 40] }, 1, 0] } },
+                            totalResults: { $sum: 1 },
+                        }
+                    },
+                    {
+                        $project: {
+                            exam: "$_id",
+                            avgMarks: { $round: ["$avgMarks", 1] },
+                            maxMarks: 1,
+                            minMarks: 1,
+                            studentCount: { $size: "$totalStudents" },
+                            passRate: { $round: [{ $multiply: [{ $divide: ["$passCount", "$totalResults"] }, 100] }, 1] },
+                        }
+                    },
+                    { $sort: { _id: 1 } },
+                ])
+            },
+            topPerformers(limit: number = 10) {
+                return this.aggregate([
+                    {
+                        $group: {
+                            _id: "$student",
+                            avgMarks: { $avg: "$marks" },
+                            totalExams: { $sum: 1 },
+                        }
+                    },
+                    { $sort: { avgMarks: -1 } },
+                    { $limit: limit },
+                    { $lookup: { from: "students", localField: "_id", foreignField: "_id", as: "student" } },
+                    { $unwind: "$student" },
+                    { $lookup: { from: "classes", localField: "student.classId", foreignField: "_id", as: "class" } },
+                    { $unwind: { path: "$class", preserveNullAndEmptyArrays: true } },
+                    {
+                        $project: {
+                            studentName: "$student.name",
+                            rollNumber: "$student.rollNumber",
+                            className: { $concat: ["$class.name", " ", "$class.section"] },
+                            avgMarks: { $round: ["$avgMarks", 1] },
+                            totalExams: 1,
+                        }
+                    },
+                ])
+            },
+            subjectWisePerformance() {
+                return this.aggregate([
+                    {
+                        $group: {
+                            _id: "$subject",
+                            avgMarks: { $avg: "$marks" },
+                            maxMarks: { $max: "$marks" },
+                            minMarks: { $min: "$marks" },
+                            passCount: { $sum: { $cond: [{ $gte: ["$marks", 40] }, 1, 0] } },
+                            failCount: { $sum: { $cond: [{ $lt: ["$marks", 40] }, 1, 0] } },
+                            total: { $sum: 1 },
+                        }
+                    },
+                    {
+                        $project: {
+                            subject: "$_id",
+                            avgMarks: { $round: ["$avgMarks", 1] },
+                            maxMarks: 1,
+                            minMarks: 1,
+                            passRate: { $round: [{ $multiply: [{ $divide: ["$passCount", "$total"] }, 100] }, 1] },
+                            failCount: 1,
+                            total: 1,
+                        }
+                    },
+                    { $sort: { avgMarks: -1 } },
+                ])
+            },
         },
     }
 )

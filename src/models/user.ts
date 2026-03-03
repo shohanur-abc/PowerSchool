@@ -88,6 +88,34 @@ userSchema.statics.getAll = function () {
     return this.find().sort({ role: 1, name: 1 })
 }
 
+userSchema.statics.registrationTrend = function (months: number = 6) {
+    const startDate = new Date()
+    startDate.setMonth(startDate.getMonth() - months)
+    return this.aggregate([
+        { $match: { createdAt: { $gte: startDate } } },
+        {
+            $group: {
+                _id: { month: { $month: "$createdAt" }, year: { $year: "$createdAt" } },
+                count: { $sum: 1 },
+            }
+        },
+        { $sort: { "_id.year": 1, "_id.month": 1 } },
+    ])
+}
+
+userSchema.statics.verificationStats = function () {
+    return this.aggregate([
+        {
+            $group: {
+                _id: null,
+                total: { $sum: 1 },
+                verified: { $sum: { $cond: [{ $ne: ["$emailVerified", null] }, 1, 0] } },
+                unverified: { $sum: { $cond: [{ $eq: ["$emailVerified", null] }, 1, 0] } },
+            }
+        },
+    ])
+}
+
 // ============= INSTANCE METHODS =============
 userSchema.methods.comparePassword = async function (candidatePassword: string) {
     if (!this.password) return false
